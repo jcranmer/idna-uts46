@@ -30,32 +30,33 @@ or comparing strings.`
 
 ## API
 
-### `uts46.toAscii(domain, transitional=false, useStd3ASCII=false)`
+### `uts46.toAscii(domain, options={transitional: false, useStd3ASCII:false })`
 
-Converts a domain name to the correct ASCII label. The `transitional` parameter
-controls whether or not transitional processing (see the IDNA mess for dummies
-section for more details) is requested, defaulting to false. The `useStd3ASCII`
-parameter controls whether or not characters that are illegal in domain names
-per the DNS specification should be omitted. Both of the latter parameters are
-optional and should be omitted for most users.
+Converts a domain name to the correct ASCII label. The second parameter is an
+optional options parameter, which has two configurable options. The
+`transitional` option controls whether or not transitional processing (see the
+IDNA mess for dummies section for more details) is requested, defaulting to
+false. The `useStd3ASCII` option controls whether or not characters that are
+illegal in domain names per the DNS specification should be omitted. Both of the
+latter parameters are optional and should be omitted for most users.
 
 ```js
 uts46.toAscii('öbb.at'); // 'xn-bb-eka.at'
 uts46.toAscii('ÖBB.AT'); // 'xn-bb-eka.at'
 uts46.toAscii('XN-BB-EKA.AT'); // 'xn-bb-eka.at'
 uts46.toAscii('faß.de'); // 'fass.de'
-uts46.toAscii('faß.de', true); // 'fass.de'
-uts46.toAscii('faß.de', false); // 'xn--fa-hia.de'
-uts46.toAscii('xn--fa-hia.de', false); // 'xn--fa-hia.de'
+uts46.toAscii('faß.de', {transitional: true}); // 'fass.de'
+uts46.toAscii('faß.de', {transitional: false}); // 'xn--fa-hia.de'
+uts46.toAscii('xn--fa-hia.de', {transitional: false}); // 'xn--fa-hia.de'
 uts46.toAscii(String.fromCodePoint(0xd0000)); // Error (as it is unassigned)
 ```
 
-### `uts46.toUnicode(domain, useStd3ASCII=false)`
+### `uts46.toUnicode(domain, options={useStd3ASCII: false})`
 
-Converts a domain name to a normalized Unicode label. The `useStd3ASCII`
-parameter controls whether or not characters that are illegal in domain names
-per the DNS specification should be omitted. The latter parameter is optional
-and should be omitted for most users.
+Converts a domain name to a normalized Unicode label. The second parameter is an
+optional options parameter. The `useStd3ASCII` option controls whether or not
+characters that are illegal in domain names per the DNS specification should be
+omitted. The latter parameter is optional and should be omitted for most users.
 
 ```js
 uts46.toUnicode('xn-bb-eka.at'); // 'öbb.at'
