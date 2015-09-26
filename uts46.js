@@ -83,13 +83,18 @@ function validateLabel(label, useStd3ASCII, transitional) {
     throw new Error("Label contains illegal character: " + ch);
 }
 
-function toAscii(domain, transitional, useStd3ASCII) {
-  if (transitional === undefined)
-      transitional = true;
+function toAscii(domain, options) {
+  if (options === undefined)
+    options = { };
+  var transitional = 'transitional' in options ? options.transitional : true;
+  var useStd3ASCII = 'useStd3ASCII' in options ? options.useStd3ASCII : false;
   var labels = process(domain, transitional, useStd3ASCII).split('.');
   return labels.map(punycode.toASCII).join('.');
 }
-function toUnicode(domain, useStd3ASCII) {
+function toUnicode(domain, options) {
+  if (options === undefined)
+    options = { };
+  var useStd3ASCII = 'useStd3ASCII' in options ? options.useStd3ASCII : false;
   return process(domain, false, useStd3ASCII);
 }
 

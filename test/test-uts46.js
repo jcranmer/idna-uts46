@@ -6,13 +6,15 @@ suite('toASCII', function () {
     assert.equal(uts46.toAscii("öbb.at"), "xn--bb-eka.at");
     assert.equal(uts46.toAscii("xn--bb-eka.at"), "xn--bb-eka.at");
     assert.equal(uts46.toAscii("XN--BB-EKA.AT"), "xn--bb-eka.at");
-    assert.equal(uts46.toAscii("faß.de", true), "fass.de");
-    assert.equal(uts46.toAscii("faß.de", false), "xn--fa-hia.de");
-    assert.equal(uts46.toAscii("xn--fa-hia.de", true), "xn--fa-hia.de");
+    assert.equal(uts46.toAscii("faß.de", {transitional: true}), "fass.de");
+    assert.equal(uts46.toAscii("faß.de", {transitional: false}), "xn--fa-hia.de");
+    assert.equal(uts46.toAscii("xn--fa-hia.de", {transitional: true}), "xn--fa-hia.de");
     // Default to not processing STD3 rules (that's what URL.domainToASCII
     // is specifying).
     assert.equal(uts46.toAscii("not=std3"), "not=std3");
-    assert.throws(function () {uts46.toAscii("not=std3", false, true); });
+    assert.throws(function () {
+      uts46.toAscii("not=std3", { useStd3ASCII: true });
+    });
     assert.throws(function () {uts46.toAscii(String.fromCodePoint(0xd0000)); });
   });
   test('Defaults to transitional', function () {
@@ -39,7 +41,9 @@ suite('toUnicode', function () {
     // Default to not processing STD3 rules (that's what URL.domainToASCII
     // is specifying).
     assert.equal(uts46.toUnicode("not=std3"), "not=std3");
-    assert.throws(function () {uts46.toUnicode("not=std3", true); });
+    assert.throws(function () {
+      uts46.toUnicode("not=std3", { useStd3ASCII: true });
+    });
     assert.throws(function () {uts46.toUnicode(String.fromCodePoint(0xd0000)); });
   });
   test('Non-BMP characters', function () {

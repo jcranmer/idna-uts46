@@ -34,13 +34,16 @@ function matchInaneIDNARules(result, tooLong) {
 }
 
 function toAscii(input, transitional) {
-  var result = uts46.toAscii(input, transitional, true);
+  var result = uts46.toAscii(input, {
+    transitional: transitional,
+    useStd3ASCII: true
+  });
   result = matchInaneIDNARules(result, true);
   return result;
 }
 
-function toUnicode(input, transitional) {
-  var result = uts46.toUnicode(input, true);
+function toUnicode(input) {
+  var result = uts46.toUnicode(input, {useStd3ASCII: true});
   // ToUnicode isn't supposed to verify DNS length, but the test vectors seem to
   // think that means we aren't supposed to verify overlength.
   result = matchInaneIDNARules(result, false);
