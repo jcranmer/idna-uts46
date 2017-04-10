@@ -1,26 +1,38 @@
+"use strict";
+
 var assert = require("assert");
 var uts46 = require("../uts46");
 
-suite('toASCII', function () {
-  test('Basic tests', function () {
+suite('toASCII', function() {
+  test('Basic tests', function() {
     assert.equal(uts46.toAscii("öbb.at"), "xn--bb-eka.at");
     assert.equal(uts46.toAscii("xn--bb-eka.at"), "xn--bb-eka.at");
     assert.equal(uts46.toAscii("XN--BB-EKA.AT"), "xn--bb-eka.at");
-    assert.equal(uts46.toAscii("faß.de", {transitional: true}), "fass.de");
-    assert.equal(uts46.toAscii("faß.de", {transitional: false}), "xn--fa-hia.de");
-    assert.equal(uts46.toAscii("xn--fa-hia.de", {transitional: true}), "xn--fa-hia.de");
+    assert.equal(uts46.toAscii("faß.de", {
+      transitional: true
+    }), "fass.de");
+    assert.equal(uts46.toAscii("faß.de", {
+      transitional: false
+    }), "xn--fa-hia.de");
+    assert.equal(uts46.toAscii("xn--fa-hia.de", {
+      transitional: true
+    }), "xn--fa-hia.de");
     // Default to not processing STD3 rules (that's what URL.domainToASCII
     // is specifying).
     assert.equal(uts46.toAscii("not=std3"), "not=std3");
-    assert.throws(function () {
-      uts46.toAscii("not=std3", { useStd3ASCII: true });
+    assert.throws(function() {
+      uts46.toAscii("not=std3", {
+        useStd3ASCII: true
+      });
     });
-    assert.throws(function () {uts46.toAscii(String.fromCodePoint(0xd0000)); });
+    assert.throws(function() {
+      uts46.toAscii(String.fromCodePoint(0xd0000));
+    });
   });
-  test('Defaults to transitional', function () {
+  test('Defaults to transitional', function() {
     assert.equal("fass.de", uts46.toAscii("faß.de"));
   });
-  test('Non-BMP characters', function () {
+  test('Non-BMP characters', function() {
     assert.equal(uts46.toAscii("\ud83d\udca9"), "xn--ls8h");
     // This non-BMP character gets mapped to another non-BMP character.
     assert.equal(uts46.toAscii("\ud87e\udcca"), "xn--w60j");
@@ -29,8 +41,8 @@ suite('toASCII', function () {
   });
 });
 
-suite('toUnicode', function () {
-  test('Basic tests', function () {
+suite('toUnicode', function() {
+  test('Basic tests', function() {
     assert.equal(uts46.toUnicode("öbb.at"), "öbb.at");
     assert.equal(uts46.toUnicode("Öbb.at"), "öbb.at");
     assert.equal(uts46.toUnicode("O\u0308bb.at"), "öbb.at");
@@ -41,12 +53,16 @@ suite('toUnicode', function () {
     // Default to not processing STD3 rules (that's what URL.domainToASCII
     // is specifying).
     assert.equal(uts46.toUnicode("not=std3"), "not=std3");
-    assert.throws(function () {
-      uts46.toUnicode("not=std3", { useStd3ASCII: true });
+    assert.throws(function() {
+      uts46.toUnicode("not=std3", {
+        useStd3ASCII: true
+      });
     });
-    assert.throws(function () {uts46.toUnicode(String.fromCodePoint(0xd0000)); });
+    assert.throws(function() {
+      uts46.toUnicode(String.fromCodePoint(0xd0000));
+    });
   });
-  test('Non-BMP characters', function () {
+  test('Non-BMP characters', function() {
     assert.equal(uts46.toUnicode("\ud83d\udca9"), "\ud83d\udca9");
     // This non-BMP character gets mapped to another non-BMP character.
     assert.equal(uts46.toUnicode("\ud87e\udcca"), "\ud84c\udc0a");
