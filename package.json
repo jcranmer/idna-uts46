@@ -29,13 +29,13 @@
     "punycode": "2.1.0"
   },
   "devDependencies": {
-    "chai": "^3.2.0",
+    "chai": "3.5.0",
     "grunt": "1.0.1",
     "grunt-mocha-istanbul": "5.0.2",
     "grunt-mocha-test": "0.13.2",
     "istanbul": "0.4.5",
     "mocha": "3.2.0",
-    "requirejs-browser": "^2.1.9"
+    "requirejs-browser": "2.1.9"
   },
   "engines": {
     "node": ">=4.0.0"

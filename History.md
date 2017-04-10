@@ -2,6 +2,7 @@
 ==========
 Initial Fork Release covering:
   * dependenncy upgrades
+    * chai 3.5.0
     * grunt 0.4.5 -> 1.0.1
     * grunt-mocha-istanbul 3.0.1 -> 5.0.2
     * grunt-mocha-test 0.12.7 -> 0.13.2
