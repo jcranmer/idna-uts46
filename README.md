@@ -1,5 +1,7 @@
 # IDNA-UTS #46 in JavaScript
 
+This is a maintained fork of the idna-uts46 library originally written by jcranmer.
+
 The [JS Punycode converter library](https://github.com/bestiejs/punycode.js/) is
 a great tool for handling Unicode domain names, but it only implements the
 Punycode encoding of domain labels, not the full IDNA algorithm. In simple
@@ -66,6 +68,15 @@ uts46.toUnicode('faß.de'); // 'faß.de'
 uts46.toUnicode('xn--fa-hia.de'); // 'faß.de'
 uts46.toUnicode('﷼'); // "ریال"
 uts46.toUnicode(String.fromCodePoint(0xd0000)); // Error (as it is unassigned)
+```
+
+## Pull latest idna-map.js
+Call the below python script by providing the most current RELEASED unicode version.
+The latest released version can be found in here: http://www.unicode.org/Public/UCD/latest/ReadMe.txt
+e.g.:
+
+```bash
+python idna-map.js 9.0.0
 ```
 
 ## Known issues
