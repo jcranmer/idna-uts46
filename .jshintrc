@@ -1,20 +1,14 @@
 {
-  "bitwise": true,
+  "globals": {
+    "define": false
+  },
+  "esversion": 6,
+  "bitwise": false,
   "curly": false,
   "eqeqeq": true,
   "forin": true,
   "freeze": true,
   "funcscope": false,
-  "globals": {
-    "angular": true,
-    "toastr": true,
-    "ispapiIdnconverter": true,
-    "ispapiPricing": true,
-    "agGrid": true,
-    "io": true,
-    "$": true,
-    "Pace": true
-  },
   "iterator": false,
   "latedef": false,
   "maxcomplexity": false,
@@ -29,7 +23,7 @@
   "notypeof": false,
   "shadow": false,
   "singleGroups": false,
-  "strict": true,
+  "strict": false,
   "undef": true,
   "unused": true,
   "varstmt": false,

@@ -9,8 +9,20 @@
     "idna",
     "domain"
   ],
+  "nyc": {
+    "reporter": [
+      "html",
+      "text"
+    ],
+    "exclude": [
+      "**/*.spec.js",
+      "idna-map.js"
+    ]
+  },
   "scripts": {
-    "test": "grunt test"
+    "test": "npm run test-COVERAGE --silent",
+    "test-MOCHA": "./node_modules/.bin/_mocha --opts mocha.opts $(find ./test -type f -name '*.spec.js')",
+    "test-COVERAGE": "cross-env NODE_ENV=development nyc npm run test-MOCHA --silent"
   },
   "repository": {
     "type": "git",
@@ -30,11 +42,10 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
-    "grunt": "1.0.1",
-    "grunt-mocha-istanbul": "5.0.2",
-    "grunt-mocha-test": "0.13.2",
+    "cross-env": "4.0.0",
     "istanbul": "0.4.5",
     "mocha": "3.2.0",
+    "nyc": "10.2.0",
     "requirejs-browser": "2.1.9"
   },
   "engines": {

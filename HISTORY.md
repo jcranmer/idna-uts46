@@ -1,3 +1,16 @@
+2017-04-18
+==========
+  * Switched automated tests to fit our own way
+    * dropped out grunt
+    * introduced nyc
+    * introduced mocha.opts
+    * npm test now runs both: tests and coverage report
+    * add .nyc_output to gitignore
+    * renamed test source code files to .spec.js as this is very common
+  * re-validated source codes, still open: idna-map.js
+  * updated .jshintrc config
+  * added IDN translation cases found on unicode.org (see test-uts46.spec.js). Need to investigate further
+
 2017-04-10
 ==========
 Initial Fork Release covering:
