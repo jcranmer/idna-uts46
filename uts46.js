@@ -13,8 +13,8 @@
 
 function mapLabel(label, useStd3ASCII, transitional) {
   var mapped = [];
-  for (var ch of label) {
-    var cp = ch.codePointAt(0);
+  for (var i = 0; i < label.length; i++) {
+    var cp = label.codePointAt(i);
     var composite = idna_map.mapChar(cp);
     var flags = (composite >> 23);
     var kind = (composite >> 21) & 3;
@@ -22,13 +22,13 @@ function mapLabel(label, useStd3ASCII, transitional) {
     var length = composite & 0x1f;
     var value = idna_map.mapStr.substr(index, length);
     if (kind == 0 || (useStd3ASCII && (flags & 1))) {
-      throw new Error("Illegal char " + ch);
+      throw new Error("Illegal char " + label[i]);
     } else if (kind == 1) {
       mapped.push(value);
     } else if (kind == 2) {
-      mapped.push(transitional ? value : ch);
+      mapped.push(transitional ? value : label[i]);
     } else if (kind == 3) {
-      mapped.push(ch);
+      mapped.push(label[i]);
     }
   }
 
