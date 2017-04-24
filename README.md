@@ -30,15 +30,18 @@ or comparing strings.`
 
 ## API
 
-### `uts46.toAscii(domain, options={transitional: false, useStd3ASCII:false })`
+### `uts46.toAscii(domain, options={transitional: false, useStd3ASCII: false, verifyDnsLength: false })`
 
 Converts a domain name to the correct ASCII label. The second parameter is an
 optional options parameter, which has two configurable options. The
 `transitional` option controls whether or not transitional processing (see the
 IDNA mess for dummies section for more details) is requested, defaulting to
 false. The `useStd3ASCII` option controls whether or not characters that are
-illegal in domain names per the DNS specification should be omitted. Both of the
-latter parameters are optional and should be omitted for most users.
+illegal in domain names per the DNS specification should be omitted. The
+`verifyDnsLength` option controls whether or not the resulting DNS label should
+be checked for length validity (i.e., no empty components and not too long). The
+options parameter and its associated fields are all optional and should be
+omitted for most users.
 
 ```js
 uts46.toAscii('öbb.at'); // 'xn-bb-eka.at'
@@ -70,10 +73,8 @@ uts46.toUnicode(String.fromCodePoint(0xd0000)); // Error (as it is unassigned)
 
 ## Known issues
 
-This code does not implement the verifyDNSLength parameter of the UTS #46
-algorithm (largely because the WHATWG URL specification does not use said
-parameter). It also does not try to implement the Bidi and contextual rules for
-validation: these do not affect any mapping of the domain names; instead, they
-restrict the set of valid domain names. Since registrars shouldn't be accepting
-these names in the first place, a domain that violates these rules will simply
-fail to resolve.
+It also does not try to implement the Bidi and contextual rules for validation:
+these do not affect any mapping of the domain names; instead, they restrict the
+set of valid domain names. Since registrars shouldn't be accepting these names
+in the first place, a domain that violates these rules will simply fail to
+resolve.

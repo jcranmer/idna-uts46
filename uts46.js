@@ -88,9 +88,22 @@ function toAscii(domain, options) {
     options = { };
   var transitional = 'transitional' in options ? options.transitional : true;
   var useStd3ASCII = 'useStd3ASCII' in options ? options.useStd3ASCII : false;
+  var verifyDnsLength = 'verifyDnsLength' in options ? options.verifyDnsLength : false;
   var labels = process(domain, transitional, useStd3ASCII).split('.');
-  return labels.map(punycode.toASCII).join('.');
+  var asciiLabels = labels.map(punycode.toASCII);
+  var asciiString = asciiLabels.join('.');
+  if (verifyDnsLength) {
+    if (asciiString.length < 1 || asciiString.length > 253) {
+      throw new Error("DNS name has wrong length: " + asciiString);
+    }
+    for (var label of asciiLabels) {
+      if (label.length < 1 || label.length > 63)
+        throw new Error("DNS label has wrong length: " + label);
+    }
+  }
+  return asciiString;
 }
+
 function toUnicode(domain, options) {
   if (options === undefined)
     options = { };
