@@ -6,9 +6,14 @@
 <script src="../node_modules/chai/chai.js"></script>
 <script src="../node_modules/mocha/mocha.js"></script>
 <script src="../node_modules/requirejs-browser/require.js"></script>
-<script src="../node_modules/punycode/punycode.js"></script>
 <script src="node_fs_shim.js"></script>
-<script>
+<script type="module">
+import punycode from "../node_modules/punycode/punycode.es6.js";
+
+define('punycode', [], function () {
+  return punycode;
+});
+
 mocha.setup('tdd');
 
 define('assert', [], function () {
@@ -32,6 +37,7 @@ function runScript() {
     });
   });
 }
+window.runScript = runScript;
 </script>
 </head>
 <body onload="runScript()">
