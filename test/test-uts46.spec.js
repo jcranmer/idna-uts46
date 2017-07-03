@@ -28,6 +28,45 @@ suite('toASCII', function() {
     assert.throws(function() {
       uts46.toAscii(String.fromCodePoint(0xd0000));
     });
+    // Check verify DNS length
+    assert.equal(uts46.toAscii("", {
+      verifyDnsLength: false
+    }), "");
+    assert.throws(function() {
+      uts46.toAscii("", {
+        verifyDnsLength: true
+      });
+    });
+  });
+  test('Verify DNS length parameter', function() {
+    assert.throws(function() {
+      uts46.toAscii("this..is.almost.right", {
+        verifyDnsLength: true
+      });
+    });
+    assert.throws(function() {
+      uts46.toAscii("a.".repeat(252 / 2) + "aa", {
+        verifyDnsLength: true
+      });
+    });
+    assert.doesNotThrow(function() {
+      // Exactly 253 characters.
+      uts46.toAscii("a.".repeat(252 / 2) + "a", {
+        verifyDnsLength: true
+      });
+    });
+    assert.throws(function() {
+      uts46.toAscii("a".repeat(64), {
+        verifyDnsLength: true
+      });
+    });
+    assert.doesNotThrow(function() {
+      uts46.toAscii("a".repeat(63), {
+        verifyDnsLength: true
+      });
+    });
+    // Default is to not verify it.
+    assert.equal(uts46.toAscii(""), "");
   });
   test('Defaults to transitional', function() {
     assert.equal("fass.de", uts46.toAscii("faß.de"));
