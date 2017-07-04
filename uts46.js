@@ -15,8 +15,10 @@
 
   function mapLabel(label, useStd3ASCII, transitional) {
     var mapped = [];
-    for (var ch of label) {
-      var cp = ch.codePointAt(0);
+    var chars = punycode.ucs2.decode(label);
+    for (var i = 0; i < chars.length; i++) {
+      var cp = chars[i];
+      var ch = punycode.ucs2.encode([chars[i]]);
       var composite = idna_map.mapChar(cp);
       var flags = (composite >> 23);
       var kind = (composite >> 21) & 3;
