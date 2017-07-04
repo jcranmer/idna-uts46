@@ -11,6 +11,10 @@ the full mapping for these strings, as defined by
 [UTS #46](http://unicode.org/reports/tr46/).
 
 
+## Install
+
+npm install idna-uts46-hx --save
+
 ## IDNA mess for dummies
 
 Unfortunately, the situation of internationalized domain names is rather
