@@ -66,12 +66,13 @@ function handleIdnaTestLine(line) {
   lineno++;
   // Ignore comments and empty lines.
   line = line.split("#")[0];
-  if (line.length === 0)
+  if (line.length === 0 || line.trim()==='')
     return;
 
   var fields = line.split(/;/g).map(function(s) {
     return s.trim();
   });
+
   var mode = fields[0];
   var testVector = handleEscapes(fields[1]);
   var unicodeData = handleEscapes(fields[2]) || testVector;

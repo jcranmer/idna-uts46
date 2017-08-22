@@ -83,7 +83,7 @@ The latest released version can be found in here: http://www.unicode.org/Public/
 e.g.:
 
 ```bash
-python idna-map.js 9.0.0
+python build-unicode-tables.py 10.0.0
 ```
 
 ## Known issues
