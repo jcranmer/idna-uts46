@@ -104,11 +104,13 @@
     var labels = process(domain, transitional, useStd3ASCII).split('.');
     var asciiLabels = labels.map(punycode.toASCII);
     var asciiString = asciiLabels.join('.');
+    var i;
     if (verifyDnsLength) {
       if (asciiString.length < 1 || asciiString.length > 253) {
         throw new Error("DNS name has wrong length: " + asciiString);
       }
-      for (var label of asciiLabels) {
+      for (i = 0; i < asciiLabels.length; i++) {//for .. of replacement
+        var label = asciiLabels[i];
         if (label.length < 1 || label.length > 63)
           throw new Error("DNS label has wrong length: " + label);
       }
