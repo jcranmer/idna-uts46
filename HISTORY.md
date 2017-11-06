@@ -1,3 +1,7 @@
+2017-11-06 / 2.3.0 - 2.3.1
+==========================
+* replaced for .. of loop in uts46.js on Line 111 with simple for loop. I don't expect this to break as no codepoint logic has to be payed heed to.
+
 2017-04-18
 ==========
   * Switched automated tests to fit our own way
