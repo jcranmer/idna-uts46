@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "npm run test-COVERAGE --silent",
-    "test-MOCHA": "./node_modules/.bin/_mocha --opts mocha.opts $(find ./test -type f -name '*.spec.js')",
+    "test-MOCHA": "./node_modules/.bin/_mocha $(find ./test -type f -name '*.spec.js')",
     "test-COVERAGE": "cross-env NODE_ENV=development nyc npm run test-MOCHA --silent"
   },
   "repository": {
