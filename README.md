@@ -10,7 +10,6 @@ but the real mapping for strings is far more complex. This library implements
 the full mapping for these strings, as defined by
 [UTS #46](http://unicode.org/reports/tr46/).
 
-
 ## Install
 
 npm install idna-uts46-hx --save
@@ -50,14 +49,15 @@ options parameter and its associated fields are all optional and should be
 omitted for most users.
 
 ```js
-uts46.toAscii('öbb.at'); // 'xn-bb-eka.at'
-uts46.toAscii('ÖBB.AT'); // 'xn-bb-eka.at'
-uts46.toAscii('XN-BB-EKA.AT'); // 'xn-bb-eka.at'
-uts46.toAscii('faß.de'); // 'fass.de'
-uts46.toAscii('faß.de', {transitional: true}); // 'fass.de'
-uts46.toAscii('faß.de', {transitional: false}); // 'xn--fa-hia.de'
-uts46.toAscii('xn--fa-hia.de', {transitional: false}); // 'xn--fa-hia.de'
-uts46.toAscii(String.fromCodePoint(0xd0000)); // Error (as it is unassigned)
+/* eslint-disable */
+uts46.toAscii('öbb.at') // 'xn-bb-eka.at'
+uts46.toAscii('ÖBB.AT') // 'xn-bb-eka.at'
+uts46.toAscii('XN-BB-EKA.AT') // 'xn-bb-eka.at'
+uts46.toAscii('faß.de') // 'fass.de'
+uts46.toAscii('faß.de', { transitional: true }) // 'fass.de'
+uts46.toAscii('faß.de', { transitional: false }) // 'xn--fa-hia.de'
+uts46.toAscii('xn--fa-hia.de', { transitional: false }) // 'xn--fa-hia.de'
+uts46.toAscii(String.fromCodePoint(0xd0000)) // Error (as it is unassigned)
 ```
 
 ### `uts46.toUnicode(domain, options={useStd3ASCII: false})`
@@ -68,16 +68,18 @@ characters that are illegal in domain names per the DNS specification should be
 omitted. The latter parameter is optional and should be omitted for most users.
 
 ```js
-uts46.toUnicode('xn-bb-eka.at'); // 'öbb.at'
-uts46.toUnicode('ÖBB.AT'); // 'öbb.at'
-uts46.toUnicode('O\u0308BB.AT'); // 'öbb.at'
-uts46.toUnicode('faß.de'); // 'faß.de'
-uts46.toUnicode('xn--fa-hia.de'); // 'faß.de'
-uts46.toUnicode('﷼'); // "ریال"
-uts46.toUnicode(String.fromCodePoint(0xd0000)); // Error (as it is unassigned)
+/* eslint-disable */
+uts46.toUnicode('xn-bb-eka.at') // 'öbb.at'
+uts46.toUnicode('ÖBB.AT') // 'öbb.at'
+uts46.toUnicode('O\u0308BB.AT') // 'öbb.at'
+uts46.toUnicode('faß.de') // 'faß.de'
+uts46.toUnicode('xn--fa-hia.de') // 'faß.de'
+uts46.toUnicode('﷼') // "ریال"
+uts46.toUnicode(String.fromCodePoint(0xd0000)) // Error (as it is unassigned)
 ```
 
 ## Pull latest idna-map.js
+
 Call the below python script by providing the most current RELEASED unicode version.
 The latest released version can be found in here: http://www.unicode.org/Public/UCD/latest/ReadMe.txt
 e.g.:
