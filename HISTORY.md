@@ -1,29 +1,8 @@
-# [3.0.0](https://github.com/hexonet/idna-uts46/compare/v2.0.0...v3.0.0) (2019-04-15)
-
+# 3.0.0 (2019-04-15)
 
 ### Documentation
 
 * **readme:** review links ([38e3533](https://github.com/hexonet/idna-uts46/commit/38e3533))
-
-
-### BREAKING CHANGES
-
-* **readme:** just bumping major release
-
-# [2.0.0](https://github.com/hexonet/idna-uts46/compare/v1.0.0...v2.0.0) (2019-04-15)
-
-
-### Documentation
-
-* **README:** review readme ([76385b8](https://github.com/hexonet/idna-uts46/commit/76385b8))
-
-
-### BREAKING CHANGES
-
-* **README:** no breaking change just bumping major release
-
-# 1.0.0 (2019-04-15)
-
 
 ### Bug Fixes
 
@@ -32,10 +11,15 @@
 * **travis:** install python requirements in user space ([bda853a](https://github.com/hexonet/idna-uts46/commit/bda853a))
 * **travis:** review build step requirements and docs ([f890546](https://github.com/hexonet/idna-uts46/commit/f890546))
 
+### BREAKING CHANGES
+
+* **readme:** just bumping major release as of CI/CD review in direction of Travis CI and semantic-release.
 
 ### Features
 
 * **pkg:** upgrade to unicode 12.0.0; introduce travis ci ([ecfc57f](https://github.com/hexonet/idna-uts46/commit/ecfc57f))
+
+### OLDER RELEASES (manually documented)
 
 2017-11-06 / 2.3.0 - 2.3.1
 ==========================
