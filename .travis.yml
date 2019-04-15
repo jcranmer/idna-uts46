@@ -20,7 +20,6 @@ before_install:
 install:
 - npm i
 before_script:
-- npm run build
 - npm run lint
 script:
 - npm run test
