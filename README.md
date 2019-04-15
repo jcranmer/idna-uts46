@@ -120,13 +120,15 @@ resolve.
 
 ## Contributing
 
-Please read [our development guide](https://github.com/hexonet/node-sdk/wiki/Development-Guide) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [our development guide](https://github.com/hexonet/idna-uts46/wiki/Development-Guide) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
+NOTE: As mentioned, initial work done by jcranmer.
+
 * **Kai Schwarz** - *lead development* - [PapaKai](https://github.com/papakai)
 
-See also the list of [contributors](https://github.com/hexonet/node-sdk/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/hexonet/idna-uts46/graphs/contributors) who participated in this project.
 
 ## License
 
