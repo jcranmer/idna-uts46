@@ -21,9 +21,9 @@ install:
 - npm i
 - pip install -r requirements.txt --user
 before_script:
-- npx lint
+- npm run lint
 script:
-- npx test --silent
+- npm run test --silent
 - "./scripts/pep8check.sh"
 after_success:
 - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
