@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/hexonet/idna-uts46/compare/v1.0.0...v2.0.0) (2019-04-15)
+
+
+### Documentation
+
+* **README:** review readme ([76385b8](https://github.com/hexonet/idna-uts46/commit/76385b8))
+
+
+### BREAKING CHANGES
+
+* **README:** no breaking change just bumping major release
+
 # 1.0.0 (2019-04-15)
 
 
