@@ -19,7 +19,7 @@ before_install:
 - npm prune
 install:
 - npm i
-- pip install -r requirements.txt
+- pip install -r requirements.txt --user
 before_script:
 - npm run lint
 script:
