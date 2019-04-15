@@ -1,3 +1,18 @@
+# 1.0.0 (2019-04-15)
+
+
+### Bug Fixes
+
+* **pep8:** fix pep8 format check script ([464ffd4](https://github.com/hexonet/idna-uts46/commit/464ffd4))
+* **travis:** fix build steps ([3f60010](https://github.com/hexonet/idna-uts46/commit/3f60010))
+* **travis:** install python requirements in user space ([bda853a](https://github.com/hexonet/idna-uts46/commit/bda853a))
+* **travis:** review build step requirements and docs ([f890546](https://github.com/hexonet/idna-uts46/commit/f890546))
+
+
+### Features
+
+* **pkg:** upgrade to unicode 12.0.0; introduce travis ci ([ecfc57f](https://github.com/hexonet/idna-uts46/commit/ecfc57f))
+
 2017-11-06 / 2.3.0 - 2.3.1
 ==========================
 * replaced for .. of loop in uts46.js on Line 111 with simple for loop. I don't expect this to break as no codepoint logic has to be payed heed to.
