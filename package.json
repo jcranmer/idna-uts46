@@ -43,7 +43,7 @@
     "test-MOCHA": "./node_modules/.bin/_mocha $(find ./test -type f -name '*.spec.js')",
     "test-COVERAGE": "cross-env NODE_ENV=development nyc npm run test-MOCHA --silent",
     "lint": "eslint --fix --config=./.eslintrc.js uts46.js README.md *.json test/*.spec.js && npm run lint-python",
-    "lint-python": "autopep8 -i -a -a *.py",
+    "lint-python": "./scripts/pep8fix.sh",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
