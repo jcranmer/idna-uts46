@@ -23,7 +23,7 @@ install:
 before_script:
 - npm run lint
 script:
-- npm run test --silent
+- npm run test --silent >/dev/null
 - "./scripts/pep8check.sh"
 after_success:
 - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
