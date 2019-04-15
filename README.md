@@ -12,7 +12,7 @@ the full mapping for these strings, as defined by
 
 ## Install
 
-npm install idna-uts46-hx --save
+`npm install idna-uts46-hx --save`
 
 ## IDNA mess for dummies
 
@@ -81,12 +81,14 @@ uts46.toUnicode(String.fromCodePoint(0xd0000)) // Error (as it is unassigned)
 ## Pull latest idna-map.js
 
 Call the below python script by providing the most current RELEASED unicode version.
-The latest released version can be found in here: http://www.unicode.org/Public/UCD/latest/ReadMe.txt
+The latest released version can be found in [here](http://www.unicode.org/Public/UCD/latest/ReadMe.txt)
 e.g.:
 
 ```bash
-python build-unicode-tables.py 10.0.0
+./build-unicode-tables.py 10.0.0
 ```
+
+This script can only be run under Python 2 and to be migrated soon.
 
 ## Known issues
 

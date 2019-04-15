@@ -2,4 +2,5 @@ coverage
 node_modules
 test/IdnaTest.txt
 npm-debug.log*
-.nyc_output/
+.nyc_output
+.vscode

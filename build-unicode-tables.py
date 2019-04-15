@@ -8,14 +8,16 @@ import json
 import re
 import sys
 import urllib2
+from functools import reduce
 
 # NUM_UCHAR is the number of Unicode characters there are.
 NUM_UCHAR = 0x10ffff + 1
 
+
 def download_unicode(version):
     idna_tables = "http://www.unicode.org/Public/idna/" + version
-    infd = urllib2.urlopen(idna_tables + "/IdnaTest.txt")
-    #with open("test/test-idna2.js", "w") as outfd:
+    infd = urllib2.urlopen(idna_tables + "/IdnaTestV2.txt")
+    # with open("test/test-idna2.js", "w") as outfd:
     #    build_test_code(infd, outfd)
     with open("test/IdnaTest.txt", "w") as outfd:
         for line in infd:
@@ -23,10 +25,11 @@ def download_unicode(version):
     infd.close()
     infd = urllib2.urlopen(idna_tables + "/IdnaMappingTable.txt")
     dgc = urllib2.urlopen("http://www.unicode.org/Public/" + version
-            + "/ucd/extracted/DerivedGeneralCategory.txt")
+                          + "/ucd/extracted/DerivedGeneralCategory.txt")
     with open("idna-map.js", "w") as outfd:
         build_unicode_map(infd, outfd, dgc)
     infd.close()
+
 
 def parse_unicode_data_file(fd):
     '''Yield a generator of (start, end, fields) for the given Unicode data
@@ -36,9 +39,11 @@ def parse_unicode_data_file(fd):
     inclusive.'''
     for line in fd:
         pos = line.find('#')
-        if pos >= 0: line = line[:pos]
+        if pos >= 0:
+            line = line[:pos]
         line = line.strip()
-        if not line: continue
+        if not line:
+            continue
         parts = [p.strip() for p in line.split(';')]
 
         stend = map(lambda x: int(x, 16), parts[0].split('..'))
@@ -49,8 +54,10 @@ def parse_unicode_data_file(fd):
         yield start, end, tuple(parts[1:])
     fd.close()
 
+
 def utf16len(string):
     return sum(2 if ord(c) > 0xffff else 1 for c in string)
+
 
 class MappedValue(object):
     def __init__(self, parts):
@@ -59,7 +66,7 @@ class MappedValue(object):
         # If there are two parts, the second part is the mapping in question.
         if len(parts) > 1 and parts[1]:
             self.chars = ''.join(map(lambda u: unichr(int(u, 16)),
-                parts[1].split(' ')))
+                                     parts[1].split(' ')))
         else:
             self.chars = ''
 
@@ -85,7 +92,7 @@ class MappedValue(object):
         if self.rule == 'disallowed':
             status = 0
         elif self.rule == 'ignored':
-            status = 1 # We're mapping to a string of length 0
+            status = 1  # We're mapping to a string of length 0
         elif self.rule == 'mapped':
             status = 1
         elif self.rule == 'deviation':
@@ -135,8 +142,8 @@ def build_unicode_map(idnaMapTable, out, derivedGeneralCategory):
     specialCase = unicharMap[0xe0100]
     for ch in range(0x30000, len(unicharMap)):
         assert unicharMap[ch] == 0 or (
-                unicharMap[ch] == specialCase and
-                (0xe0100 <= ch and ch <= 0xe01ef))
+            unicharMap[ch] == specialCase and
+            (0xe0100 <= ch and ch <= 0xe01ef))
 
     mem, lg_block_size, blocks = min(find_block_sizes(unicharMap[:0x30000]))
     block_size = 1 << lg_block_size
@@ -157,21 +164,21 @@ def build_unicode_map(idnaMapTable, out, derivedGeneralCategory):
 """)
 
     # Emit the blocks
-    out.write("var blocks = [\n");
+    out.write("var blocks = [\n")
     for block in blocks:
         out.write("  new Uint32Array([%s]),\n" % ','.join(map(str, block)))
     out.write("];\n")
 
     # Now emit the block index map
     out.write("var blockIdxes = new Uint%dArray([" %
-        (8 if len(blocks) < 256 else 16))
+              (8 if len(blocks) < 256 else 16))
     out.write(','.join(str(blocks.index(tuple(unicharMap[i:i + block_size])))
-        for i in range(0, 0x30000, block_size)))
+                       for i in range(0, 0x30000, block_size)))
     out.write(']);\n')
 
     # And the string
     out.write("var mappingStr = %s;\n" %
-        json.dumps(mappedStr, ensure_ascii=False).encode('utf-8'))
+              json.dumps(mappedStr, ensure_ascii=False).encode('utf-8'))
 
     # Finish off with the function to actually look everything up
     out.write("""
@@ -191,16 +198,19 @@ return {
 };
 }));
 """ % {'codepoint': unicharMap[0xE0100], 'block_size': lg_block_size,
-    'mask': (1 << lg_block_size) - 1})
+       'mask': (1 << lg_block_size) - 1})
 
 # The next two functions are helpers to find the block size that minimizes the
 # total memory use. Notice that we're being clever in finding memory use by
 # noting when we can use Uint8Array versus Uint32Array.
+
+
 def find_block_sizes(unicharMap):
     for lg_block_size in range(1, 15):
         block_size = 1 << lg_block_size
         memUsage, blocks = compute_block_size(unicharMap, block_size)
         yield memUsage, lg_block_size, blocks
+
 
 def compute_block_size(unicharMap, block_size):
     blocks = set()
@@ -224,6 +234,8 @@ def convert_escape(string):
     return string
 
 # These functions build the test IDNA vectors.
+
+
 def build_body(mode, test_vector, func, expected):
     lines = []
     if expected[0] == '[':
@@ -231,19 +243,20 @@ def build_body(mode, test_vector, func, expected):
             return []
         if mode == 'T' or mode == 'B':
             lines.append("assert.throws(function () { %s(\"%s\", true); });" %
-                (func, test_vector))
+                         (func, test_vector))
         if mode == 'N' or mode == 'B':
             lines.append("assert.throws(function () { %s(\"%s\", false); });" %
-                (func, test_vector))
+                         (func, test_vector))
     else:
         if mode == 'T' or mode == 'B':
             lines.append("assert.equal(%s(\"%s\", true), \"%s\");" %
-                (func, test_vector, expected))
+                         (func, test_vector, expected))
         if mode == 'N' or mode == 'B':
             lines.append("assert.equal(%s(\"%s\", false), \"%s\");" %
-                (func, test_vector, expected))
+                         (func, test_vector, expected))
 
     return lines
+
 
 def build_test_code(infd, out):
     out.write("/* This file is generated from the Unicode IDNA table, using\n")
@@ -280,6 +293,7 @@ function toUnicode(input, transitional) {
             out.write("    %s\n" % test)
         out.write("  });\n")
     out.write("});\n")
+
 
 if len(sys.argv) != 2:
     sys.stderr.write("Usage: %s <version>" % sys.argv[0])
