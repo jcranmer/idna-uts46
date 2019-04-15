@@ -1,5 +1,13 @@
 # IDNA-UTS #46 in JavaScript
 
+[![npm version](https://img.shields.io/npm/v/idna-uts46-hx.svg?style=flat)](https://www.npmjs.com/package/idna-uts46-hx)
+[![node](https://img.shields.io/node/v/idna-uts46-hx.svg)](https://www.npmjs.com/package/idna-uts46-hx)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![build](https://travis-ci.org/hexonet/idna-uts46.svg?branch=master)](https://travis-ci.org/hexonet/idna-uts46)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/hexonet/idna-uts46/blob/master/CONTRIBUTING.md)
+
+This module is a IDNA UTS46 connector library for javascript.
 This is a maintained fork of the idna-uts46 library originally written by jcranmer.
 
 The [JS Punycode converter library](https://github.com/bestiejs/punycode.js/) is
@@ -10,11 +18,35 @@ but the real mapping for strings is far more complex. This library implements
 the full mapping for these strings, as defined by
 [UTS #46](http://unicode.org/reports/tr46/).
 
-## Install
+## Resources
 
-`npm install idna-uts46-hx --save`
+* [Usage Guide](https://github.com/hexonet/idna-uts46/blob/master/README.md#how-to-use-this-module-in-your-project)
+* [Release Notes](https://github.com/hexonet/idna-uts46/releases)
+* [Development Guide](https://github.com/hexonet/idna-uts46/wiki/Development-Guide)
 
-## IDNA mess for dummies
+## How to use this module in your project
+
+### Requirements
+
+* Installed nodejs/npm, if you plan running it on webserver-side. We suggest using [nvm](https://github.com/creationix/nvm).
+
+### NodeJS Version Compatibility
+
+| Version | NodeJS |
+| ------- | ------ |
+| any | >= 4.x |
+
+### Installation / Update
+
+```bash
+    npm i idna-uts46-hx@latest --save
+```
+
+### Usage Examples
+
+We provide only documentation and examples for the latest release.
+
+#### IDNA mess for dummies
 
 Unfortunately, the situation of internationalized domain names is rather
 complicated by the existence of multiple incompatible standards (IDNA2003 and
@@ -33,9 +65,9 @@ will be changed to ``nontransitional`` mode.
 `It is highly recommended that you use the ASCII form of the label for storing
 or comparing strings.`
 
-## API
+#### API
 
-### `uts46.toAscii(domain, options={transitional: false, useStd3ASCII: false, verifyDnsLength: false })`
+##### `uts46.toAscii(domain, options={transitional: false, useStd3ASCII: false, verifyDnsLength: false })`
 
 Converts a domain name to the correct ASCII label. The second parameter is an
 optional options parameter, which has two configurable options. The
@@ -60,7 +92,7 @@ uts46.toAscii('xn--fa-hia.de', { transitional: false }) // 'xn--fa-hia.de'
 uts46.toAscii(String.fromCodePoint(0xd0000)) // Error (as it is unassigned)
 ```
 
-### `uts46.toUnicode(domain, options={useStd3ASCII: false})`
+##### `uts46.toUnicode(domain, options={useStd3ASCII: false})`
 
 Converts a domain name to a normalized Unicode label. The second parameter is an
 optional options parameter. The `useStd3ASCII` option controls whether or not
@@ -78,22 +110,24 @@ uts46.toUnicode('﷼') // "ریال"
 uts46.toUnicode(String.fromCodePoint(0xd0000)) // Error (as it is unassigned)
 ```
 
-## Pull latest idna-map.js
-
-Call the below python script by providing the most current RELEASED unicode version.
-The latest released version can be found in [here](http://www.unicode.org/Public/UCD/latest/ReadMe.txt)
-e.g.:
-
-```bash
-./build-unicode-tables.py 10.0.0
-```
-
-This script can only be run under Python 2 and to be migrated soon.
-
-## Known issues
+### Known issues
 
 It also does not try to implement the Bidi and contextual rules for validation:
 these do not affect any mapping of the domain names; instead, they restrict the
 set of valid domain names. Since registrars shouldn't be accepting these names
 in the first place, a domain that violates these rules will simply fail to
 resolve.
+
+## Contributing
+
+Please read [our development guide](https://github.com/hexonet/node-sdk/wiki/Development-Guide) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Authors
+
+* **Kai Schwarz** - *lead development* - [PapaKai](https://github.com/papakai)
+
+See also the list of [contributors](https://github.com/hexonet/node-sdk/graphs/contributors) who participated in this project.
+
+## License
+
+MIT
