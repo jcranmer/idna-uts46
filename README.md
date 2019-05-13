@@ -32,9 +32,10 @@ the full mapping for these strings, as defined by
 
 ### NodeJS Version Compatibility
 
-| Version | NodeJS |
-| ------- | ------ |
-| any | >= 4.x |
+| Version  | NodeJS |
+| -------- | ------ |
+| >= 3.1.0 | >= 6.x |
+| <= 3.0.0 | >= 4.x |
 
 ### Installation / Update
 
@@ -109,6 +110,21 @@ uts46.toUnicode('xn--fa-hia.de') // 'faß.de'
 uts46.toUnicode('﷼') // "ریال"
 uts46.toUnicode(String.fromCodePoint(0xd0000)) // Error (as it is unassigned)
 ```
+
+##### `uts46.convert(domain)`
+
+Converts a domain name in correct way. Returning IDNA2003 / IDNA2008 strings
+where it makes sense as this is dependent on the domain extension / TLD.
+
+```js
+/* eslint-disable */
+uts46.convert('xn-bb-eka.at') // { IDN: 'öbb.at', PC: 'xn-bb-eka.at' }
+uts46.convert(['öbb.at', 'xn--fa-hia.de']) // { IDN: ['öbb.at', 'faß.de'], PC: ['xn-bb-eka.at', 'faß.de'] }
+```
+
+#### Using it in-browser
+
+Use file `uts46bundle.js` as JavaScript include. The Tool will then be available as ispapiIdnconverter object in Javascript.
 
 ### Known issues
 
