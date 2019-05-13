@@ -1,3 +1,11 @@
+## [3.1.1](https://github.com/hexonet/idna-uts46/compare/v3.1.0...v3.1.1) (2019-05-13)
+
+
+### Bug Fixes
+
+* **docs:** fix documentation ([73423d1](https://github.com/hexonet/idna-uts46/commit/73423d1))
+* **docs:** fix documentation ([adcf5a9](https://github.com/hexonet/idna-uts46/commit/adcf5a9))
+
 # [3.1.0](https://github.com/hexonet/idna-uts46/compare/v3.0.0...v3.1.0) (2019-05-13)
 
 
