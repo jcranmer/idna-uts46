@@ -10,7 +10,7 @@
   "main": "uts46.js",
   "license": "MIT",
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "homepage": "https://github.com/hexonet/idna-uts46",
   "repository": "github:hexonet/idna-uts46",
@@ -43,8 +43,7 @@
     "test-MOCHA": "./node_modules/.bin/_mocha $(find ./test -type f -name '*.spec.js')",
     "test-COVERAGE": "cross-env NODE_ENV=development nyc npm run test-MOCHA --silent",
     "lint": "eslint --fix --config=./.eslintrc.js uts46.js README.md *.json test/*.spec.js && npm run lint-python",
-    "lint-python": "./scripts/pep8fix.sh",
-    "semantic-release": "semantic-release"
+    "lint-python": "./scripts/pep8fix.sh"
   },
   "dependencies": {
     "punycode": "2.1.1"
@@ -53,7 +52,7 @@
     "@semantic-release/changelog": "3.0.2",
     "@semantic-release/git": "7.0.8",
     "@semantic-release/github": "5.2.10",
-    "@semantic-release/npm": "^5.1.7",
+    "@semantic-release/npm": "5.1.7",
     "chai": "4.2.0",
     "cross-env": "5.2.0",
     "eslint": "5.16.0",
@@ -61,14 +60,14 @@
     "eslint-plugin-import": "2.17.2",
     "eslint-plugin-json": "1.4.0",
     "eslint-plugin-markdown": "1.0.0",
-    "eslint-plugin-node": "8.0.1",
+    "eslint-plugin-node": "9.0.1",
     "eslint-plugin-promise": "4.1.1",
     "eslint-plugin-standard": "4.0.0",
     "istanbul": "0.4.5",
     "mocha": "6.1.4",
-    "nyc": "^14.0.0",
+    "nyc": "14.1.1",
     "requirejs-browser": "2.1.9",
-    "semantic-release": "^15.13.12"
+    "semantic-release": "^15.13.13"
   },
   "release": {
     "debug": false,
