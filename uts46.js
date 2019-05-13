@@ -106,6 +106,37 @@
     return asciiString
   }
 
+  function convert (domains) {
+    const isArrayInput = Array.isArray(domains)
+    if (!isArrayInput) {
+      domains = [domains]
+    }
+    let results = { IDN: [], PC: [] }
+    domains.forEach((domain) => {
+      let pc, tmp
+      try {
+        pc = toAscii(domain, {
+          transitional: !domain.match(/\.(?:be|ca|de|fr|pm|re|swiss|tf|wf|yt)\.?$/)
+        })
+        tmp = {
+          PC: pc,
+          IDN: toUnicode(pc)
+        }
+      } catch (e) {
+        tmp = {
+          PC: domain,
+          IDN: domain
+        }
+      }
+      results.PC.push(tmp.PC)
+      results.IDN.push(tmp.IDN)
+    })
+    if (isArrayInput) {
+      return results
+    }
+    return { IDN: results.IDN[0], PC: results.PC[0] }
+  }
+
   function toUnicode (domain, options) {
     if (options === undefined) { options = {} }
     var useStd3ASCII = 'useStd3ASCII' in options ? options.useStd3ASCII : false
@@ -114,6 +145,7 @@
 
   return {
     toUnicode: toUnicode,
-    toAscii: toAscii
+    toAscii: toAscii,
+    convert: convert
   }
 }))

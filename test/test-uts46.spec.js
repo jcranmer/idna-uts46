@@ -4,6 +4,12 @@ var assert = require('assert')
 var uts46 = require('../uts46')
 
 suite('toASCII', function () {
+  test('Convert method tests', function () {
+    const d = String.fromCodePoint(0xd0000)
+    assert.strict.deepEqual(uts46.convert(d), { IDN: d, PC: d })
+    assert.strict.deepEqual(uts46.convert('öbb.at'), { IDN: 'öbb.at', PC: 'xn--bb-eka.at' })
+    assert.strict.deepEqual(uts46.convert(['öbb.at', 'faß.de']), { IDN: ['öbb.at', 'faß.de'], PC: ['xn--bb-eka.at', 'xn--fa-hia.de'] })
+  })
   test('Basic tests', function () {
     assert.strict.equal(uts46.toAscii('öbb.at'), 'xn--bb-eka.at')
     assert.strict.equal(uts46.toAscii('xn--bb-eka.at'), 'xn--bb-eka.at')
