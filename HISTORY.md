@@ -1,3 +1,15 @@
+# [3.1.0](https://github.com/hexonet/idna-uts46/compare/v3.0.0...v3.1.0) (2019-05-13)
+
+
+### Bug Fixes
+
+* **dep-add:** missing @semantic-release/exec in dev-deps ([35eb502](https://github.com/hexonet/idna-uts46/commit/35eb502))
+
+
+### Features
+
+* **uts46:** add convert method for automatic conversion of domain names ([84fcbe2](https://github.com/hexonet/idna-uts46/commit/84fcbe2))
+
 # 3.0.0 (2019-04-15)
 
 ### Documentation
