@@ -119,7 +119,7 @@ where it makes sense as this is dependent on the domain extension / TLD.
 ```js
 /* eslint-disable */
 uts46.convert('xn-bb-eka.at') // { IDN: 'öbb.at', PC: 'xn-bb-eka.at' }
-uts46.convert(['öbb.at', 'xn--fa-hia.de']) // { IDN: ['öbb.at', 'faß.de'], PC: ['xn-bb-eka.at', 'faß.de'] }
+uts46.convert(['öbb.at', 'xn--fa-hia.de']) // { IDN: ['öbb.at', 'faß.de'], PC: ['xn-bb-eka.at', 'xn--fa-hia.de'] }
 ```
 
 #### Using it in-browser
