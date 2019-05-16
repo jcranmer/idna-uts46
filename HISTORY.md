@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/hexonet/idna-uts46/compare/v3.1.1...v3.2.0) (2019-05-16)
+
+
+### Features
+
+* **unicode:** upgrade to v12.1.0 ([ee5877b](https://github.com/hexonet/idna-uts46/commit/ee5877b))
+
 ## [3.1.1](https://github.com/hexonet/idna-uts46/compare/v3.1.0...v3.1.1) (2019-05-13)
 
 
