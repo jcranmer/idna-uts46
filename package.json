@@ -54,7 +54,7 @@
     "@semantic-release/exec": "3.3.3",
     "@semantic-release/git": "7.0.13",
     "@semantic-release/github": "5.4.0",
-    "@semantic-release/npm": "5.1.9",
+    "@semantic-release/npm": "5.1.12",
     "browserify": "16.2.3",
     "cross-env": "5.2.0",
     "eslint": "5.16.0",
