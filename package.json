@@ -40,6 +40,7 @@
   },
   "scripts": {
     "bundle": "browserify -s ispapi-idnconverter uts46.js > uts46bundle.js",
+    "minify": "terser -c -o uts46bundle.min.js uts46bundle.js",
     "test": "npm run test-COVERAGE --silent",
     "test-MOCHA": "./node_modules/.bin/_mocha $(find ./test -type f -name '*.spec.js')",
     "test-COVERAGE": "cross-env NODE_ENV=development nyc npm run test-MOCHA --silent",
@@ -69,7 +70,8 @@
     "mocha": "6.1.4",
     "nyc": "14.1.1",
     "requirejs-browser": "2.1.9",
-    "semantic-release": "^15.13.13"
+    "semantic-release": "15.13.18",
+    "terser": "4.1.2"
   },
   "release": {
     "debug": false,
@@ -90,15 +92,15 @@
       "@semantic-release/npm",
       {
         "path": "@semantic-release/exec",
-        "cmd": "npm run bundle"
+        "cmd": "npm run bundle && npm run minify"
       },
       {
         "path": "@semantic-release/git",
         "assets": [
           "HISTORY.md",
           "package.json",
-          "package-lock.json",
-          "uts46bundle.js"
+          "uts46bundle.js",
+          "uts46bundle.min.js"
         ],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
