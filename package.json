@@ -70,7 +70,7 @@
     "mocha": "6.1.4",
     "nyc": "14.1.1",
     "requirejs-browser": "2.1.9",
-    "semantic-release": "15.13.18",
+    "semantic-release": "15.13.19",
     "terser": "4.1.2"
   },
   "release": {
