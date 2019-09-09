@@ -71,7 +71,7 @@
     "nyc": "14.1.1",
     "requirejs-browser": "2.1.9",
     "semantic-release": "15.13.24",
-    "terser": "4.1.4"
+    "terser": "4.3.0"
   },
   "release": {
     "debug": false,
