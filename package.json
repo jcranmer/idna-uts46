@@ -66,7 +66,7 @@
     "eslint-plugin-node": "10.0.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
-    "mocha": "6.1.4",
+    "mocha": "6.2.0",
     "nyc": "14.1.1",
     "requirejs-browser": "2.1.9",
     "semantic-release": "15.13.24",
