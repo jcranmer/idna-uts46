@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/hexonet/idna-uts46/compare/v3.2.0...v3.2.1) (2019-09-18)
+
+
+### Bug Fixes
+
+* **release process:** reuse @hexonet/semantic-release-github-npm-config ([46a3abb](https://github.com/hexonet/idna-uts46/commit/46a3abb))
+
 # [3.2.0](https://github.com/hexonet/idna-uts46/compare/v3.1.1...v3.2.0) (2019-05-16)
 
 
