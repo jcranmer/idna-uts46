@@ -1439,7 +1439,7 @@ return {
     if (!isArrayInput) {
       domains = [domains]
     }
-    let results = { IDN: [], PC: [] }
+    const results = { IDN: [], PC: [] }
     domains.forEach((domain) => {
       let pc, tmp
       try {

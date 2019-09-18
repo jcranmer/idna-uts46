@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/hexonet/idna-uts46/compare/v3.2.1...v3.2.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **release process:** review git-plugin usage; dep-bump cross-env; ([0ec058a](https://github.com/hexonet/idna-uts46/commit/0ec058a))
+
 ## [3.2.1](https://github.com/hexonet/idna-uts46/compare/v3.2.0...v3.2.1) (2019-09-18)
 
 
