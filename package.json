@@ -51,11 +51,8 @@
     "punycode": "^2.1.1"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/exec": "^3.3.6",
-    "@semantic-release/git": "^7.0.16",
-    "@semantic-release/github": "^5.4.3",
-    "@semantic-release/npm": "^5.1.15",
+    "@hexonet/semantic-release-github-npm-config": "^1.0.0",
     "browserify": "^16.5.0",
     "cross-env": "^5.2.1",
     "eslint": "^6.3.0",
@@ -71,42 +68,5 @@
     "requirejs-browser": "^2.1.9",
     "semantic-release": "^15.13.24",
     "terser": "^4.3.0"
-  },
-  "release": {
-    "debug": false,
-    "generateNotes": {
-      "preset": "angular"
-    },
-    "verifyConditions": [
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git",
-      "@semantic-release/github"
-    ],
-    "prepare": [
-      {
-        "path": "@semantic-release/changelog",
-        "changelogFile": "HISTORY.md"
-      },
-      "@semantic-release/npm",
-      {
-        "path": "@semantic-release/exec",
-        "cmd": "npm run bundle && npm run minify"
-      },
-      {
-        "path": "@semantic-release/git",
-        "assets": [
-          "HISTORY.md",
-          "package.json",
-          "uts46bundle.js",
-          "uts46bundle.min.js"
-        ],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-      }
-    ],
-    "publish": [
-      "@semantic-release/npm",
-      "@semantic-release/github"
-    ]
   }
 }
