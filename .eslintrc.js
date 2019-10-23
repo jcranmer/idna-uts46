@@ -3,9 +3,8 @@ module.exports = {
         'mocha': true,
         'node': true
     },
-    'extends': 'standard',
+    'extends': ['standard', 'plugin:json/recommended'],
     'plugins': [
-        'markdown',
-        'json'
+        'markdown'
     ]
 }
