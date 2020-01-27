@@ -34,7 +34,7 @@ the full mapping for these strings, as defined by
 
 | Version  | NodeJS |
 | -------- | ------ |
-| >= 3.2.2 | >= 8.3 |
+| >= 3.2.2 | >= 9.x |
 | >= 3.1.0 | >= 6.x |
 | <= 3.0.0 | >= 4.x |
 
