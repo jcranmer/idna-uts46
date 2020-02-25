@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "npm": ">=6.13.4",
-    "@semantic-release/exec": "^3.3.6",
+    "@semantic-release/exec": "^5.0.0",
     "@hexonet/semantic-release-github-npm-config": "^1.0.0",
     "browserify": "^16.5.0",
     "cross-env": "^7.0.0",
