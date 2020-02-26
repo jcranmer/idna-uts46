@@ -68,7 +68,7 @@
     "mocha": "^7.0.0",
     "nyc": "^15.0.0",
     "requirejs-browser": "^2.1.9",
-    "semantic-release": "^15.13.24",
+    "semantic-release": "^17.0.4",
     "terser": "^4.3.0"
   }
 }
