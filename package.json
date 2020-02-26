@@ -10,7 +10,7 @@
   "main": "uts46.js",
   "license": "MIT",
   "engines": {
-    "node": ">=9.0.0"
+    "node": ">=10.18.0"
   },
   "homepage": "https://github.com/hexonet/idna-uts46",
   "repository": "github:hexonet/idna-uts46",
