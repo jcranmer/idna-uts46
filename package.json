@@ -8,6 +8,7 @@
     "email": "kschwarz@hexonet.net"
   },
   "main": "uts46.js",
+  "typings": "index.d.ts",
   "license": "MIT",
   "engines": {
     "node": ">=10.18.0"

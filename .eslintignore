@@ -4,3 +4,4 @@ node_modules
 docs
 dist
 idna-map.js
+index.d.ts
