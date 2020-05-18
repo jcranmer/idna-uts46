@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/hexonet/idna-uts46/compare/v3.2.2...v3.3.0) (2020-05-18)
+
+
+### Features
+
+* **typescript:** adding type definitions ([8d0231f](https://github.com/hexonet/idna-uts46/commit/8d0231f1768da426322c4bab1cf8ae5f12555bf0))
+
 ## [3.2.2](https://github.com/hexonet/idna-uts46/compare/v3.2.1...v3.2.2) (2019-09-18)
 
 
