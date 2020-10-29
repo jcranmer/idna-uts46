@@ -1,7 +1,7 @@
 'use strict'
 
-var assert = require('assert')
-var uts46 = require('../uts46')
+const assert = require('assert')
+const uts46 = require('../uts46')
 
 suite('toASCII', function () {
   test('Convert method tests', function () {

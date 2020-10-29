@@ -1,11 +1,11 @@
 'use strict'
 
-var assert = require('assert')
-var fs = require('fs')
-var uts46 = require('../uts46')
+const assert = require('assert')
+const fs = require('fs')
+const uts46 = require('../uts46')
 
 function matchInaneIDNARules (result, tooLong) {
-  var labels = result.split('.')
+  let labels = result.split('.')
 
   // Ignore empty leading tokens because... we have to do this to pass? But we
   // can't ignore stuff in the middle!
@@ -29,7 +29,7 @@ function matchInaneIDNARules (result, tooLong) {
 }
 
 function toAscii (input, transitional) {
-  var result = uts46.toAscii(input, {
+  let result = uts46.toAscii(input, {
     transitional: transitional,
     useStd3ASCII: true
   })
@@ -38,7 +38,7 @@ function toAscii (input, transitional) {
 }
 
 function toUnicode (input) {
-  var result = uts46.toUnicode(input, {
+  let result = uts46.toUnicode(input, {
     useStd3ASCII: true
   })
   // ToUnicode isn't supposed to verify DNS length, but the test vectors seem to
@@ -58,19 +58,19 @@ function handleIdnaTestLine (line) {
   line = line.split('#')[0]
   if (line.length === 0 || line.trim() === '') { return }
 
-  var fields = line.split(/;/g).map(function (s) {
+  const fields = line.split(/;/g).map(function (s) {
     return s.trim()
   })
 
-  var mode = fields[0]
-  var testVector = handleEscapes(fields[1])
-  var unicodeData = handleEscapes(fields[2]) || testVector
-  var asciiData = handleEscapes(fields[3]) || unicodeData
+  const mode = fields[0]
+  const testVector = handleEscapes(fields[1])
+  const unicodeData = handleEscapes(fields[2]) || testVector
+  const asciiData = handleEscapes(fields[3]) || unicodeData
 
   function handleMode (func, expected) {
     // If this is true, we are expecting an error. However, if the only errors
     // would be bidi or contextual errors, ignore it.
-    var expectError = expected.startsWith('[')
+    const expectError = expected.startsWith('[')
     if (expectError && !(/[AVP]/.exec(expected))) { return }
 
     if (expectError) {
@@ -100,7 +100,7 @@ function handleIdnaTestLine (line) {
 }
 
 suite('IDNA test files', function () {
-  var data = fs.readFileSync('test/IdnaTest.txt', {
+  const data = fs.readFileSync('test/IdnaTest.txt', {
     encoding: 'UTF-8'
   })
   data.split('\n').forEach(handleIdnaTestLine)

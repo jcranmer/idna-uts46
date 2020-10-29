@@ -11,7 +11,8 @@
   "typings": "index.d.ts",
   "license": "MIT",
   "engines": {
-    "node": ">=10.18.0"
+    "node": ">=10.18.0",
+    "npm": ">=6.13.4"
   },
   "homepage": "https://github.com/hexonet/idna-uts46",
   "repository": "github:hexonet/idna-uts46",
@@ -49,27 +50,25 @@
     "lint-python": "./scripts/pep8fix.sh"
   },
   "dependencies": {
-    "npm": ">=6.13.4",
     "punycode": "^2.1.1"
   },
   "devDependencies": {
-    "npm": ">=6.13.4",
     "@semantic-release/exec": "^5.0.0",
-    "@hexonet/semantic-release-github-npm-config": "^2.0.0",
+    "@hexonet/semantic-release-github-npm-config": "^2.0.2",
     "browserify": "^17.0.0",
-    "cross-env": "^7.0.0",
-    "eslint": "^7.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.12.1",
     "eslint-config-standard": "^16.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-json": "^2.0.0",
-    "eslint-plugin-markdown": "^1.0.0",
-    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-json": "^2.1.2",
+    "eslint-plugin-markdown": "^1.0.2",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "mocha": "^8.0.1",
-    "nyc": "^15.0.0",
+    "eslint-plugin-standard": "^4.0.2",
+    "mocha": "^8.2.0",
+    "nyc": "^15.1.0",
     "requirejs-browser": "^2.1.9",
-    "semantic-release": "^17.0.4",
-    "terser": "^5.0.0"
+    "semantic-release": "^17.2.1",
+    "terser": "^5.3.8"
   }
 }
