@@ -64,7 +64,7 @@
     "eslint-plugin-markdown": "^1.0.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.2",
+    "eslint-plugin-standard": "^5.0.0",
     "mocha": "^8.2.0",
     "nyc": "^15.1.0",
     "requirejs-browser": "^2.1.9",
