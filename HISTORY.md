@@ -1,3 +1,16 @@
+## [3.3.1](https://github.com/hexonet/idna-uts46/compare/v3.3.0...v3.3.1) (2021-01-26)
+
+
+### Bug Fixes
+
+* **ci:** migration from Travis CI to github actions ([ebadb75](https://github.com/hexonet/idna-uts46/commit/ebadb759e0e6de8744daa5c0671fd48676a2f166))
+* **ci:** remove --user flag for pip install ([8749327](https://github.com/hexonet/idna-uts46/commit/874932703364462466f86c5af4ee9692535ecc8a))
+
+
+### Reverts
+
+* **travis:** reverting change of travis-ci config ([8e804da](https://github.com/hexonet/idna-uts46/commit/8e804da0b50d63070436d01e9204a1718ee15cf6))
+
 # [3.3.0](https://github.com/hexonet/idna-uts46/compare/v3.2.2...v3.3.0) (2020-05-18)
 
 

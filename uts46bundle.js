@@ -789,7 +789,7 @@ return {
 }));
 
 },{}],2:[function(require,module,exports){
-(function (global){
+(function (global){(function (){
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 ;(function(root) {
 
@@ -1324,7 +1324,7 @@ return {
 
 }(this));
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+}).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],3:[function(require,module,exports){
 (function (root, factory) {
   /* istanbul ignore next */
@@ -1342,17 +1342,17 @@ return {
   }
 }(this, function (punycode, idnaMap) {
   function mapLabel (label, useStd3ASCII, transitional) {
-    var mapped = []
-    var chars = punycode.ucs2.decode(label)
-    for (var i = 0; i < chars.length; i++) {
-      var cp = chars[i]
-      var ch = punycode.ucs2.encode([chars[i]])
-      var composite = idnaMap.mapChar(cp)
-      var flags = (composite >> 23)
-      var kind = (composite >> 21) & 3
-      var index = (composite >> 5) & 0xffff
-      var length = composite & 0x1f
-      var value = idnaMap.mapStr.substr(index, length)
+    const mapped = []
+    const chars = punycode.ucs2.decode(label)
+    for (let i = 0; i < chars.length; i++) {
+      const cp = chars[i]
+      const ch = punycode.ucs2.encode([chars[i]])
+      const composite = idnaMap.mapChar(cp)
+      const flags = (composite >> 23)
+      const kind = (composite >> 21) & 3
+      const index = (composite >> 5) & 0xffff
+      const length = composite & 0x1f
+      const value = idnaMap.mapStr.substr(index, length)
       if (kind === 0 || (useStd3ASCII && (flags & 1))) {
         throw new Error('Illegal char ' + ch)
       } else if (kind === 1) {
@@ -1365,17 +1365,17 @@ return {
       }
     }
 
-    var newLabel = mapped.join('').normalize('NFC')
+    const newLabel = mapped.join('').normalize('NFC')
     return newLabel
   }
 
   function process (domain, transitional, useStd3ASCII) {
     /* istanbul ignore if */
     if (useStd3ASCII === undefined) { useStd3ASCII = false }
-    var mappedIDNA = mapLabel(domain, useStd3ASCII, transitional)
+    const mappedIDNA = mapLabel(domain, useStd3ASCII, transitional)
 
     // Step 3. Break
-    var labels = mappedIDNA.split('.')
+    let labels = mappedIDNA.split('.')
 
     // Step 4. Convert/Validate
     labels = labels.map(function (label) {
@@ -1409,25 +1409,25 @@ return {
 
     // 5. The label must not begin with a combining mark, that is:
     // General_Category=Mark.
-    var ch = label.codePointAt(0)
+    const ch = label.codePointAt(0)
     if (idnaMap.mapChar(ch) & (0x2 << 23)) { throw new Error('Label contains illegal character: ' + ch) }
   }
 
   function toAscii (domain, options) {
     if (options === undefined) { options = {} }
-    var transitional = 'transitional' in options ? options.transitional : true
-    var useStd3ASCII = 'useStd3ASCII' in options ? options.useStd3ASCII : false
-    var verifyDnsLength = 'verifyDnsLength' in options ? options.verifyDnsLength : false
-    var labels = process(domain, transitional, useStd3ASCII).split('.')
-    var asciiLabels = labels.map(punycode.toASCII)
-    var asciiString = asciiLabels.join('.')
-    var i
+    const transitional = 'transitional' in options ? options.transitional : true
+    const useStd3ASCII = 'useStd3ASCII' in options ? options.useStd3ASCII : false
+    const verifyDnsLength = 'verifyDnsLength' in options ? options.verifyDnsLength : false
+    const labels = process(domain, transitional, useStd3ASCII).split('.')
+    const asciiLabels = labels.map(punycode.toASCII)
+    const asciiString = asciiLabels.join('.')
+    let i
     if (verifyDnsLength) {
       if (asciiString.length < 1 || asciiString.length > 253) {
         throw new Error('DNS name has wrong length: ' + asciiString)
       }
       for (i = 0; i < asciiLabels.length; i++) { // for .. of replacement
-        var label = asciiLabels[i]
+        const label = asciiLabels[i]
         if (label.length < 1 || label.length > 63) { throw new Error('DNS label has wrong length: ' + label) }
       }
     }
@@ -1467,7 +1467,7 @@ return {
 
   function toUnicode (domain, options) {
     if (options === undefined) { options = {} }
-    var useStd3ASCII = 'useStd3ASCII' in options ? options.useStd3ASCII : false
+    const useStd3ASCII = 'useStd3ASCII' in options ? options.useStd3ASCII : false
     return process(domain, false, useStd3ASCII)
   }
 
