@@ -9,6 +9,7 @@ import re
 import sys
 import urllib2
 from functools import reduce
+import struct
 
 # NUM_UCHAR is the number of Unicode characters there are.
 NUM_UCHAR = 0x10ffff + 1
@@ -59,14 +60,21 @@ def utf16len(string):
     return sum(2 if ord(c) > 0xffff else 1 for c in string)
 
 
+def unichar(i):
+    try:
+        return unichr(i)
+    except ValueError:
+        return struct.pack('i', i).decode('utf-32')
+
+
 class MappedValue(object):
     def __init__(self, parts):
         self.flags = 0
         self.rule = parts[0]
         # If there are two parts, the second part is the mapping in question.
         if len(parts) > 1 and parts[1]:
-            self.chars = ''.join(map(lambda u: unichr(int(u, 16)),
-                                     parts[1].split(' ')))
+            self.chars = ''.join(
+                map(lambda u: unichar(int(u, 16)), parts[1].split(' ')))
         else:
             self.chars = ''
 
@@ -140,12 +148,12 @@ def build_unicode_map(idnaMapTable, out, derivedGeneralCategory):
     # (The special case here is that the variation selections, in plane 14, are
     # set to ignored, not disallowed).
     specialCase = unicharMap[0xe0100]
-    for ch in range(0x30000, len(unicharMap)):
+    for ch in range(0x3134B, len(unicharMap)):
         assert unicharMap[ch] == 0 or (
             unicharMap[ch] == specialCase and
             (0xe0100 <= ch and ch <= 0xe01ef))
 
-    mem, lg_block_size, blocks = min(find_block_sizes(unicharMap[:0x30000]))
+    mem, lg_block_size, blocks = min(find_block_sizes(unicharMap[:0x3134B]))
     block_size = 1 << lg_block_size
     blocks = list(blocks)
     out.write("/* This file is generated from the Unicode IDNA table, using\n")
