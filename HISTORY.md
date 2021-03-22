@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/hexonet/idna-uts46/compare/v3.3.1...v3.4.0) (2021-03-22)
+
+
+### Features
+
+* **unicode:** update to v13.0.0 ([2741d21](https://github.com/hexonet/idna-uts46/commit/2741d214012786ae5ac019abaa733f6a8399f89f))
+
 ## [3.3.1](https://github.com/hexonet/idna-uts46/compare/v3.3.0...v3.3.1) (2021-01-26)
 
 
