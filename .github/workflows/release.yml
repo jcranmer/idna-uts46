@@ -1,12 +1,25 @@
 name: Release
-on: [push, pull_request]
+on: 
+  # will run for every branch, except tags. See RSRMID-206.
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:
+      - "**"
+    # Sequence of patterns matched against refs/tags
+    tags-ignore: 
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+    tags-ignore: 
+      - "**"
 
 jobs:
   test:
     name: Test Job
     # Support [skip ci] out of box with github actions Workaround
     # Only works for push https://github.com/actions/runner/issues/774
-    if: github.event_name == 'pull_request' || (github.event_name == 'push' && contains(toJson(github.event.commits), '[skip ci]') == false)
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.actor != 'dependabot[bot]')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
