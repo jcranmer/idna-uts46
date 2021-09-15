@@ -41,6 +41,7 @@ jobs:
           npm prune && npm i
       - name: Run test/validation
         run: |
+          gulp prettierCheck
           npm run lint
           npm run test --silent >/dev/null
   release:
