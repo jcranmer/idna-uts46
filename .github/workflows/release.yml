@@ -17,8 +17,6 @@ on:
 jobs:
   test:
     name: Test Job
-    # Support [skip ci] out of box with github actions Workaround
-    # Only works for push https://github.com/actions/runner/issues/774
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.actor != 'dependabot[bot]')
     runs-on: ubuntu-latest
     steps:
