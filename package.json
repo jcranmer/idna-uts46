@@ -65,7 +65,7 @@
 		"gulp": "^4.0.2",
 		"gulp-esbuild": "^0.8.7",
 		"gulp-prettier": "^4.0.0",
-		"mocha": "^8.2.0",
+		"mocha": "^9.1.1",
 		"nyc": "^15.1.0",
 		"prettier-config-xo": "^2.0.0",
 		"semantic-release": "^17.2.1",
