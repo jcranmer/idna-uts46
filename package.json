@@ -44,7 +44,7 @@
 		"prettier": true,
 		"globals": [],
 		"ignores": [
-			"!@(vendor|node_modules|pkg|build)/**",
+			"!@(vendor|coverage|.nyc_output|.github|node_modules|pkg|build)/**",
 			"!**/*.@(all|min).js"
 		]
 	},
