@@ -69,6 +69,6 @@
 		"nyc": "^15.1.0",
 		"prettier-config-xo": "^2.0.0",
 		"semantic-release": "^17.2.1",
-		"xo": "^0.44.0"
+		"xo": "^0.46.4"
 	}
 }
