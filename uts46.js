@@ -3,12 +3,12 @@
 	// eslint-disable-next-line no-undef
 	if (typeof define === 'function' && define.amd) {
 		// eslint-disable-next-line no-undef
-		define(['punycode', './idna-map'], function (punycode, idnaMap) {
+		define(['punycode', './idna-map.min'], function (punycode, idnaMap) {
 			return factory(punycode, idnaMap);
 		});
 	} else if (typeof exports === 'object') {
 		// eslint-disable-next-line node/no-deprecated-api
-		module.exports = factory(require('punycode'), require('./idna-map'));
+		module.exports = factory(require('punycode'), require('./idna-map.min'));
 	} else {
 		root.uts46 = factory(root.punycode, root.idna_map);
 	}

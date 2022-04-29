@@ -1,5 +1,7 @@
 const {dest, src, watch, series} = require('gulp');
 const gulpEsbuild = require('gulp-esbuild');
+const rename = require('gulp-rename');
+const terser = require('gulp-terser');
 const prettier = require('gulp-prettier');
 const prettiercfg = require('./.prettierrc');
 const filesForPrettier = ['test/*.js', '*.js', '.*.js', '!*.min.js'];
@@ -19,7 +21,7 @@ exports.prettierCheck = function () {
 /**
  * format code using prettier
  */
-exports.prettier = function () {
+exports.prettier = function prettify() {
 	return src(filesForPrettier)
 		.pipe(prettier(prettiercfg))
 		.pipe(dest(file => file.base));
@@ -28,8 +30,8 @@ exports.prettier = function () {
 /**
  * Esbuild minify + bundle css and js files
  */
-exports.bundle = function () {
-	return src('./uts46.js')
+exports.bundle = function bundle() {
+	return src('./uts46.min.js')
 		.pipe(
 			gulpEsbuild({
 				outfile: 'uts46bundle.min.js',
@@ -39,7 +41,7 @@ exports.bundle = function () {
 				platform: 'browser',
 				globalName: 'ispapiIdnconverter',
 				sourcemap: true,
-				target: 'es2015',
+				target: 'es2015', // ES6
 				resolveExtensions: ['.js'],
 				allowOverwrite: true,
 			}),
@@ -47,10 +49,28 @@ exports.bundle = function () {
 		.pipe(dest('.'));
 };
 
-/**
- * watch for any changes, minify + bundle + concatinate
- */
-
-exports.watcher = function () {
-	watch('./uts46.js', series(exports.prettier, exports.bundle));
+exports.minify = function minify() {
+	return src(['./idna-map.js', './uts46.js'])
+		.pipe(
+			terser({
+				ecma: 2015,
+				compress: true,
+				mangle: true,
+			}),
+		)
+		.pipe(
+			rename(function (path) {
+				path.basename += '.min';
+			}),
+		)
+		.pipe(dest('.'));
 };
+
+/**
+ * watch for any changes, minify + bundle + concatenate
+ */
+exports.watcher = function () {
+	watch('./uts46.js', series(exports.prettier, exports.minify, exports.bundle));
+};
+
+exports.build = series(exports.minify, exports.bundle);
