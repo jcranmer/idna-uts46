@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/hexonet/idna-uts46/compare/v3.4.0...v3.4.1) (2022-04-29)
+
+
+### Performance Improvements
+
+* **bundled version:** minify idna-map.js and rely on it as well ([0b0ffc9](https://github.com/hexonet/idna-uts46/commit/0b0ffc97c2393a5e2414839b43bb247e0f1f8269))
+
 # [3.4.0](https://github.com/hexonet/idna-uts46/compare/v3.3.1...v3.4.0) (2021-03-22)
 
 
