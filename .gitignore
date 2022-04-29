@@ -4,4 +4,3 @@ test/IdnaTest.txt
 npm-debug.log*
 .nyc_output
 .vscode
-package-lock.json

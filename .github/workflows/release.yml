@@ -19,12 +19,18 @@ jobs:
     name: Test Job
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.actor != 'dependabot[bot]')
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: ['18', '16', '14', '12', '10']
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+        uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
         with:
-          python-version: "3.x" # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
       - name: Install dependencies
         run: |
           pip install --upgrade pip
@@ -32,11 +38,13 @@ jobs:
           pip install -r requirements.txt
       - name: Validate & Coverage Report
         run: "./scripts/pep8check.sh"
-      - name: Setup NodeJS LTS
-        uses: actions/setup-node@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
       - name: Install dependencies
-        run: |
-          npm prune && npm i
+        run: npm ci
       - name: Run test/validation
         run: |
           gulp prettierCheck
@@ -50,15 +58,17 @@ jobs:
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           persist-credentials: false
       - name: Setup NodeJS LTS
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          cache: 'npm'
       - name: Install dependencies
-        run: |
-          npm prune && npm i
+        run: npm ci
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
