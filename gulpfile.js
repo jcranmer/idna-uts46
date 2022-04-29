@@ -2,7 +2,7 @@ const {dest, src, watch, series} = require('gulp');
 const gulpEsbuild = require('gulp-esbuild');
 const prettier = require('gulp-prettier');
 const prettiercfg = require('./.prettierrc');
-const filesForPrettier = ['test/*.js', '*.js', '.*.js', '!uts46bundle.min.js'];
+const filesForPrettier = ['test/*.js', '*.js', '.*.js', '!*.min.js'];
 
 /**
  * format code using prettier
