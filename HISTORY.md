@@ -1,3 +1,21 @@
+# [4.0.0](https://github.com/hexonet/idna-uts46/compare/v3.5.0...v4.0.0) (2022-05-02)
+
+
+### Bug Fixes
+
+* **dep-bump:** added pkg "future" to requirements.txt until python2 support got totally cleaned up ([6610158](https://github.com/hexonet/idna-uts46/commit/66101588a592983e285616ca131ce948ede08695))
+* **pep8:** fixed addressed issues ([f6e4acc](https://github.com/hexonet/idna-uts46/commit/f6e4accf06ab7e5bc2af71551fd19fe1f01386c4))
+
+
+### chore
+
+* **python3:** support added for generator script (build-unicode-tables.py) ([ead43c0](https://github.com/hexonet/idna-uts46/commit/ead43c06a4f1ebc6646009084c8962da12718398))
+
+
+### BREAKING CHANGES
+
+* **python3:** Module generated using the python3 ported generator script.
+
 # [3.5.0](https://github.com/hexonet/idna-uts46/compare/v3.4.1...v3.5.0) (2022-05-02)
 
 
