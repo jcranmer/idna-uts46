@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/hexonet/idna-uts46/compare/v3.4.1...v3.5.0) (2022-05-02)
+
+
+### Features
+
+* **unicode 14.0.0:** upgraded, enjoy! ([4fec362](https://github.com/hexonet/idna-uts46/commit/4fec362a5c637ac95ad7e190538893e88d9064f4))
+
 ## [3.4.1](https://github.com/hexonet/idna-uts46/compare/v3.4.0...v3.4.1) (2022-04-29)
 
 
