@@ -360,4 +360,9 @@ function toUnicode(input, transitional) {
 
 if len(sys.argv) != 2:
     sys.stderr.write("Usage: %s <version>" % sys.argv[0])
+
+result = re.match(r"^\d+\.\d+\.\d+$", sys.argv[1])
+if not result:
+    sys.stderr.write("Usage: %s <version>" % sys.argv[0])
+
 download_unicode(sys.argv[1])

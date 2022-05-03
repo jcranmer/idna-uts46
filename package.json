@@ -48,6 +48,7 @@
 			"!**/*.@(all|min).js"
 		]
 	},
+	"unicodeVersion": "14.0.0",
 	"scripts": {
 		"test": "npm run test-COVERAGE --silent",
 		"test-MOCHA": "./node_modules/.bin/_mocha $(find ./test -type f -name '*.spec.js')",
@@ -62,6 +63,7 @@
 		"@hexonet/semantic-release-github-npm-config": "^2.0.4",
 		"@semantic-release/exec": "^6.0.2",
 		"cross-env": "^7.0.3",
+		"fancy-log": "^2.0.0",
 		"gulp": "^4.0.2",
 		"gulp-esbuild": "^0.10.3",
 		"gulp-prettier": "^4.0.0",

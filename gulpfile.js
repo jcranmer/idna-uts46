@@ -5,6 +5,7 @@ const terser = require('gulp-terser');
 const prettier = require('gulp-prettier');
 const prettiercfg = require('./.prettierrc');
 const filesForPrettier = ['test/*.js', '*.js', '.*.js', '!*.min.js'];
+const log = require('fancy-log');
 
 /**
  * format code using prettier
@@ -74,3 +75,37 @@ exports.watcher = function () {
 };
 
 exports.build = series(exports.minify, exports.bundle);
+
+exports.checkUnicodeVersion = async function checkUnicodeVersion() {
+	const response = await getLatestUnicodeVersion();
+	const latestVersion = response.version;
+	if (!latestVersion) {
+		return Promise.resolve('Unable to fetch latest unicode version.');
+	}
+	const currentVersion = require('./package.json').unicodeVersion;
+	if (latestVersion === currentVersion) {
+		log('No new unicode version detected.');
+		return Promise.resolve('No new unicode version detected.');
+	}
+	log(`New unicode version ${latestVersion} has been detected.`);
+	return Promise.reject(
+		`New unicode version ${latestVersion} has been detected.`,
+	);
+};
+
+async function getLatestUnicodeVersion() {
+	let response;
+	try {
+		response = await fetch('https://www.unicode.org/versions/latest/', {
+			method: 'GET',
+		});
+	} catch (error) {
+		log('Unable to fetch latest unicode version.');
+		return Promise.reject({version: null});
+	}
+	const latestVersion = response.url.replace(/(^.+Unicode|\/?$)/g, '');
+	log(`Latest unicode version ${latestVersion} detected.`);
+	return Promise.resolve({
+		version: latestVersion,
+	});
+}

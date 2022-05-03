@@ -1,0 +1,55 @@
+name: Unicode Version Check
+on:
+  schedule:
+    - cron: "0 0 * * *"
+      
+jobs:
+  check:
+    name: Version Check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: "npm"
+    - run: gulp checkUnicodeVersion
+  upgrade:
+    name: Upgrade Version
+    runs-on: ubuntu-latest
+    needs:
+      - check
+    if: failure()
+    steps:
+      - uses: actions/checkout@v3       
+        with:
+          persist-credentials: false
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip -V
+          pip install -r requirements.txt
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
+      - name: Generate IDNA Mapping File
+        run: ./build-unicode-tables $(gulp checkUnicodeVersion --silent | grep Latest | sed 's/^.*version //g' | sed 's/ detected\.$//g')
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: "feat(unicode): upgraded version"
+          committer: Kai Schwarz <kschwarz@hexonet.net>
+          branch: upgradeUnicode
+          base: master
+          title: "Upgrade Unicode to latest Version"
+          assignees: papakai
+          reviewers: papakai
+
+
+     
