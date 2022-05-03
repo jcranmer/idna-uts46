@@ -13,6 +13,8 @@ jobs:
       with:
         node-version: 18
         cache: "npm"
+    - name: Install dependencies
+      run: npm ci
     - run: gulp checkUnicodeVersion
   upgrade:
     name: Upgrade Version
@@ -30,14 +32,15 @@ jobs:
         with:
           node-version: 18
           cache: "npm"
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
       - name: Install dependencies
         run: |
           pip install --upgrade pip
           pip -V
           pip install -r requirements.txt
-      - uses: actions/setup-python@v3
-        with:
-          python-version: "3.x"
+          npm ci
       - name: Generate IDNA Mapping File
         run: ./build-unicode-tables $(gulp checkUnicodeVersion --silent | grep Latest | sed 's/^.*version //g' | sed 's/ detected\.$//g')
       - name: Create Pull Request
