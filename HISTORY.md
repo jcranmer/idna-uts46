@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/hexonet/idna-uts46/compare/v4.0.1...v4.0.2) (2022-06-08)
+
+
+### Bug Fixes
+
+* **dep bump:** upgraded "engines" and dev deps ([1961f78](https://github.com/hexonet/idna-uts46/commit/1961f78fe9b365940318ad41be24d62759d305e3))
+
 ## [4.0.1](https://github.com/hexonet/idna-uts46/compare/v4.0.0...v4.0.1) (2022-06-08)
 
 

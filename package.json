@@ -1,7 +1,7 @@
 {
 	"name": "idna-uts46-hx",
 	"description": "A UTS #46 processing algorithm for IDNA2008 strings",
-	"version": "4.0.1",
+	"version": "4.0.2",
 	"private": false,
 	"author": {
 		"name": "Kai Schwarz",
