@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/hexonet/idna-uts46/compare/v4.0.0...v4.0.1) (2022-06-08)
+
+
+### Bug Fixes
+
+* **github workflows:** fixed to always rely on latest node version number (nodejs/npm vuln) ([4e01d90](https://github.com/hexonet/idna-uts46/commit/4e01d90cd9f158d4111d8de8fd9257452895ff15))
+
 # [4.0.0](https://github.com/hexonet/idna-uts46/compare/v3.5.0...v4.0.0) (2022-05-02)
 
 
