@@ -59,6 +59,9 @@
 	"dependencies": {
 		"punycode": "^2.1.1"
 	},
+	"overrides":{
+		"glob-parent":"^6.0.2"
+	},
 	"devDependencies": {
 		"@hexonet/semantic-release-github-npm-config": "^3.0.2",
 		"@semantic-release/exec": "^6.0.2",
