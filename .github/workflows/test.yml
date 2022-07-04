@@ -26,6 +26,10 @@ jobs:
           node-version: lts/*
           check-latest: true
           cache: 'npm'
+      - name: Install node dependencies
+        run: npm ci
+      - name: Run test/validation
+        run: gulp prettierCheck
       - name: Super Linter Code Base
         uses: github/super-linter@v4
         env:
@@ -36,10 +40,6 @@ jobs:
           VALIDATE_PYTHON_BLACK: true
           VALIDATE_ALL_CODEBASE: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Install node dependencies
-        run: npm ci
-      - name: Run test/validation
-        run: gulp prettierCheck
 
   test_matrix:
     strategy:
