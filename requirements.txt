@@ -1,2 +1,1 @@
-pycodestyle~=2.6
 future~=0.18
