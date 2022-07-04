@@ -200,13 +200,14 @@ def build_unicode_map(idnaMapTable, out, derivedGeneralCategory):
     root.uts46_map = factory();
   }
 }(this, function () {
+    const z = Uint32Array;
 """
     )
 
     # Emit the blocks
     out.write("var blocks = [\n")
     for block in blocks:
-        out.write("  new Uint32Array([%s]),\n" % ",".join(map(str, block)))
+        out.write("  new z([%s]),\n" % ",".join(map(str, block)))
     out.write("];\n")
 
     # Now emit the block index map
