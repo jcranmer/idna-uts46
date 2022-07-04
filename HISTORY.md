@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/hexonet/idna-uts46/compare/v4.0.2...v4.0.3) (2022-07-04)
+
+
+### Performance Improvements
+
+* **downsizing idna-map:** moving Uint32Array to const var for reuse and thus downsizing entire file ([da056b9](https://github.com/hexonet/idna-uts46/commit/da056b94736a1b87b55882ea4f9b64655d15122a))
+
 ## [4.0.2](https://github.com/hexonet/idna-uts46/compare/v4.0.1...v4.0.2) (2022-06-08)
 
 

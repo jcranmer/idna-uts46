@@ -1,7 +1,7 @@
 {
 	"name": "idna-uts46-hx",
 	"description": "A UTS #46 processing algorithm for IDNA2008 strings",
-	"version": "4.0.2",
+	"version": "4.0.3",
 	"private": false,
 	"author": {
 		"name": "Kai Schwarz",
@@ -59,8 +59,8 @@
 	"dependencies": {
 		"punycode": "^2.1.1"
 	},
-	"overrides":{
-		"glob-parent":"^6.0.2"
+	"overrides": {
+		"glob-parent": "^6.0.2"
 	},
 	"devDependencies": {
 		"@hexonet/semantic-release-github-npm-config": "^3.0.3",
