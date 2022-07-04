@@ -7,7 +7,6 @@
 			return factory(punycode, idnaMap);
 		});
 	} else if (typeof exports === 'object') {
-		// eslint-disable-next-line node/no-deprecated-api
 		module.exports = factory(require('punycode'), require('./idna-map.min'));
 	} else {
 		root.uts46 = factory(root.punycode, root.idna_map);

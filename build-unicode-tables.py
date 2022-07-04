@@ -34,19 +34,13 @@ def download_unicode(version):
     uribase = "http://www.unicode.org/Public/"
     idna_tables = uribase + "idna/" + version
     print("... " + idna_tables + "/IdnaTestV2.txt")
-    urllib.request.urlretrieve(
-        idna_tables + "/IdnaTestV2.txt",
-        "test/IdnaTest.txt")
+    urllib.request.urlretrieve(idna_tables + "/IdnaTestV2.txt", "test/IdnaTest.txt")
     infd = urllib.request.urlopen(idna_tables + "/IdnaMappingTable.txt")
     dgc = urllib.request.urlopen(
         uribase + version + "/ucd/extracted/DerivedGeneralCategory.txt"
     )
     print("... " + idna_tables + "/IdnaMappingTable.txt")
-    print(
-        "... " +
-        uribase +
-        version +
-        "/ucd/extracted/DerivedGeneralCategory.txt\n")
+    print("... " + uribase + version + "/ucd/extracted/DerivedGeneralCategory.txt\n")
     with open("idna-map.js", "w") as outfd:
         build_unicode_map(infd, outfd, dgc)
     infd.close()
@@ -95,8 +89,7 @@ class MappedValue(object):
         self.rule = parts[0]
         # If there are two parts, the second part is the mapping in question.
         if len(parts) > 1 and parts[1]:
-            self.chars = "".join([unichar(int(u, 16))
-                                 for u in parts[1].split(" ")])
+            self.chars = "".join([unichar(int(u, 16)) for u in parts[1].split(" ")])
         else:
             self.chars = ""
 
@@ -115,7 +108,7 @@ class MappedValue(object):
                 self.index = utf16len(string)
                 string = string + self.chars
             else:
-                self.index = utf16len(string[0: self.index])
+                self.index = utf16len(string[0 : self.index])
         return string
 
     def build_int(self):
@@ -161,8 +154,9 @@ def build_unicode_map(idnaMapTable, out, derivedGeneralCategory):
 
     print("... build up internal unicharMap")
     # Build up the string to use to map the output
-    vals.sort(key=cmp_to_key(lambda x, y: cmp(
-        len(x.chars), len(y.chars))), reverse=True)
+    vals.sort(
+        key=cmp_to_key(lambda x, y: cmp(len(x.chars), len(y.chars))), reverse=True
+    )
     mappedStr = reduce(lambda s, v: v.build_map_string(s), vals, "")
 
     # Convert this to integers
@@ -211,23 +205,17 @@ def build_unicode_map(idnaMapTable, out, derivedGeneralCategory):
     out.write("];\n")
 
     # Now emit the block index map
-    out.write(
-        "var blockIdxes = new Uint%dArray([" %
-        (8 if len(blocks) < 256 else 16))
+    out.write("var blockIdxes = new Uint%dArray([" % (8 if len(blocks) < 256 else 16))
     out.write(
         ",".join(
-            str(blocks.index(tuple(unicharMap[i: i + block_size])))
+            str(blocks.index(tuple(unicharMap[i : i + block_size])))
             for i in range(0, 0x30000, block_size)
         )
     )
     out.write("]);\n")
 
     # And the string
-    out.write(
-        "var mappingStr = %s;\n" %
-        json.dumps(
-            mappedStr,
-            ensure_ascii=False))
+    out.write("var mappingStr = %s;\n" % json.dumps(mappedStr, ensure_ascii=False))
 
     # Finish off with the function to actually look everything up
     out.write(
@@ -271,7 +259,7 @@ def find_block_sizes(unicharMap):
 def compute_block_size(unicharMap, block_size):
     blocks = set()
     for i in range(0, len(unicharMap), block_size):
-        block = tuple(unicharMap[i: i + block_size])
+        block = tuple(unicharMap[i : i + block_size])
         blocks.add(block)
     num = len(blocks)
     if num < 256:
@@ -301,21 +289,21 @@ def build_body(mode, test_vector, func, expected):
             return []
         if mode == "T" or mode == "B":
             lines.append(
-                'assert.throws(function () { %s("%s", true); });' %
-                (func, test_vector))
+                'assert.throws(function () { %s("%s", true); });' % (func, test_vector)
+            )
         if mode == "N" or mode == "B":
             lines.append(
-                'assert.throws(function () { %s("%s", false); });' %
-                (func, test_vector))
+                'assert.throws(function () { %s("%s", false); });' % (func, test_vector)
+            )
     else:
         if mode == "T" or mode == "B":
             lines.append(
-                'assert.equal(%s("%s", true), "%s");' %
-                (func, test_vector, expected))
+                'assert.equal(%s("%s", true), "%s");' % (func, test_vector, expected)
+            )
         if mode == "N" or mode == "B":
             lines.append(
-                'assert.equal(%s("%s", false), "%s");' %
-                (func, test_vector, expected))
+                'assert.equal(%s("%s", false), "%s");' % (func, test_vector, expected)
+            )
 
     return lines
 

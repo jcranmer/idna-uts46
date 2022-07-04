@@ -53,8 +53,7 @@
 		"test": "npm run test-COVERAGE --silent",
 		"test-MOCHA": "./node_modules/.bin/_mocha $(find ./test -type f -name '*.spec.js')",
 		"test-COVERAGE": "cross-env NODE_ENV=development nyc npm run test-MOCHA --silent",
-		"lint": "xo && npm run lint-python",
-		"lint-python": "./scripts/pep8fix.sh"
+		"lint": "xo"
 	},
 	"dependencies": {
 		"punycode": "^2.1.1"
