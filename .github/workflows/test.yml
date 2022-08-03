@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
       - name: Setup NodeJS @ LTS
         uses: actions/setup-node@v3
         with:
@@ -31,7 +34,7 @@ jobs:
       - name: Run test/validation
         run: gulp prettierCheck
       - name: Super Linter Code Base
-        uses: github/super-linter@v4
+        uses: github/super-linter/slim@v4
         env:
           FILTER_REGEX_INCLUDE: '.*.js|/test/*|/scripts/*|build-unicode-tables.py'
           DEFAULT_BRANCH: master
@@ -56,6 +59,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
       - name: Use NodeJS @ ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
