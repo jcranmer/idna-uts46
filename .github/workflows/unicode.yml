@@ -42,7 +42,7 @@ jobs:
           pip install -r requirements.txt
           npm ci
       - name: Generate IDNA Mapping File
-        run: ./build-unicode-tables $(gulp checkUnicodeVersion --silent | grep Latest | sed 's/^.*version //g' | sed 's/ detected\.$//g')
+        run: ./build-unicode-tables.py $(gulp checkUnicodeVersion --silent | grep Latest | sed 's/^.*version //g' | sed 's/ detected\.$//g')
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
