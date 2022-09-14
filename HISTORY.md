@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/hexonet/idna-uts46/compare/v4.0.3...v4.0.4) (2022-09-14)
+
+
+### Bug Fixes
+
+* **punycode:** don't use the punycode module shipped with nodejs, read [#148](https://github.com/hexonet/idna-uts46/issues/148) ([78bfc91](https://github.com/hexonet/idna-uts46/commit/78bfc91525de27b633b338d672d9a3a334c6a51b))
+
 ## [4.0.3](https://github.com/hexonet/idna-uts46/compare/v4.0.2...v4.0.3) (2022-07-04)
 
 
