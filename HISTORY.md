@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/hexonet/idna-uts46/compare/v4.1.0...v4.1.1) (2022-12-09)
+
+
+### Bug Fixes
+
+* **code style:** prettier-ified ([e919514](https://github.com/hexonet/idna-uts46/commit/e919514bd95f349f045290b3c3834a860cb6fe32))
+
 # [4.1.0](https://github.com/hexonet/idna-uts46/compare/v4.0.4...v4.1.0) (2022-12-09)
 
 
