@@ -1,3 +1,10 @@
+## [4.1.2](https://github.com/hexonet/idna-uts46/compare/v4.1.1...v4.1.2) (2022-12-09)
+
+
+### Bug Fixes
+
+* **unicode v15.0.0:** regenerated .js files (idna-map files were empty) ([cb00f51](https://github.com/hexonet/idna-uts46/commit/cb00f518d5fd781c82a510abd2ccff585303d137))
+
 ## [4.1.1](https://github.com/hexonet/idna-uts46/compare/v4.1.0...v4.1.1) (2022-12-09)
 
 
