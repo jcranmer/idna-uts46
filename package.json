@@ -48,7 +48,7 @@
 			"!**/*.@(all|min).js"
 		]
 	},
-	"unicodeVersion": "14.0.0",
+	"unicodeVersion": "15.0.0",
 	"scripts": {
 		"test": "npm run test-COVERAGE --silent",
 		"test-MOCHA": "./node_modules/.bin/_mocha $(find ./test -type f -name '*.spec.js')",
