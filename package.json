@@ -62,7 +62,6 @@
 		"glob-parent": "^6.0.2"
 	},
 	"devDependencies": {
-		"@hexonet/semantic-release-github-npm-config": "^3.0.3",
 		"@semantic-release/exec": "^6.0.2",
 		"cross-env": "^7.0.3",
 		"fancy-log": "^2.0.0",
