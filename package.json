@@ -62,7 +62,9 @@
 		"glob-parent": "^6.0.2"
 	},
 	"devDependencies": {
+		"@semantic-release/changelog": "^6.0.2",
 		"@semantic-release/exec": "^6.0.2",
+		"@semantic-release/git": "^10.0.0",
 		"cross-env": "^7.0.3",
 		"fancy-log": "^2.0.0",
 		"gulp": "^4.0.2",
