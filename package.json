@@ -75,7 +75,7 @@
 		"mocha": "^10.0.0",
 		"nyc": "^15.1.0",
 		"prettier-config-xo": "^2.0.0",
-		"semantic-release": "^19.0.2",
+		"semantic-release": "^20.0.3",
 		"xo": "^0.53.1"
 	}
 }
