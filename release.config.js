@@ -7,7 +7,7 @@ cfg.plugins.unshift([
 ]);
 cfg.plugins = cfg.plugins.map((plugin) => {
   if (plugin[0] === '@semantic-release/git') {
-    plugin[1].assets.push('dist/index.d.ts', 'dist/index.bundle.js');
+    plugin[1].assets.push('dist/index.d.ts', 'dist/index.mjs');
   }
   return plugin;
 });

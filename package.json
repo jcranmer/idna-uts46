@@ -3,8 +3,7 @@
   "description": "A UTS #46 processing algorithm for IDNA2008 strings",
   "version": "5.0.2",
   "private": false,
-  "module": "dist/index.mjs",
-  "main": "dist/index.cjs",
+  "main": "dist/index",
   "typings": "dist/index.d.ts",
   "license": "MIT",
   "sideEffects": false,
@@ -43,7 +42,7 @@
     "build:unicode-upgrade": "esr scripts/unicode-upgrade.ts",
     "build:unicode-checkversion": "esr scripts/unicode-checkversion.ts",
     "build:unicode-tables": "esr scripts/build-unicode-tables.ts 15.0.0",
-    "build:rollup": "rollup -c && rollup -c rollup-esm.config.mjs"
+    "build:rollup": "rollup -c rollup-esm.config.mjs"
   },
   "dependencies": {
     "punycode": "^2.1.1"
