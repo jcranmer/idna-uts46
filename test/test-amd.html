@@ -1,366 +1,396 @@
 <!DOCTYPE html>
-<html><head>
-<meta charset="UTF-8">
-<title>IDNA UTS#46 Mocha tests</title>
-<link rel="stylesheet" href="../node_modules/mocha/mocha.css"/>
-<script src="../uts46bundle.min.js"></script>
-<style>
-  #convert {
-    padding: 50px;
-  }
-  .err {
-    background-color: red;
-  }
-  .ok {
-    background-color: greenyellow;
-  }
-</style>
-<script>
-function start() {
-  const eL = document.getElementById("convert");
-  if (!ispapiIdnconverter){
-    eL.innerHTML = "<h1 class=\"err\">... Failed loading IDN Converter</h1>";
-    return;
-  }
-  eL.innerHTML = "<h1 class=\"ok\">... IDN Converter loaded</b><h1>";
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>IDNA UTS#46 Mocha tests</title>
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+    <script src="../dist/index.bundle.js"></script>
+    <style>
+      #convert {
+        padding: 50px;
+      }
+      .err {
+        background-color: red;
+      }
+      .ok {
+        background-color: greenyellow;
+      }
+    </style>
+    <script>
+      function start() {
+        const eL = document.getElementById('convert');
+        if (!idnaUts46) {
+          debugger;
+          alert('... Failed loading IDN Converter');
+          return;
+        }
+        eL.innerHTML = '<h1 class="ok">... IDN Converter loaded</b><h1>';
 
-  const uts46 = ispapiIdnconverter;
-  const data = {
-    convert: {
-      "öbb.at": "xn--bb-eka.at",
-      "faß.de": "xn--fa-hia.de",
-    },
-    toAscii: {
-      "": "",
-      "faß.de": "fass.de",
-      "\ud83d\udca9": "xn--ls8h",
-      "\ud87e\udcca": "xn--w60j",
-      "\udb40\udd00\ud87e\udcca": "xn--w60j"
-    },
-    toAsciiTransitional1: {
-      "faß.de": "fass.de",
-      "fass.de": "fass.de",
-      "xn--fa-hia.de": "xn--fa-hia.de",
-      "fäß.de": "xn--fss-qla.de",
-      "₹.com": "xn--yzg.com",
-      "𑀓.com": "xn--n00d.com",
-      "a‌b": "ab",
-      "xn--ab-j1t": "xn--ab-j1t",
-      "öbb.at": "xn--bb-eka.at",
-      "ÖBB.at": "xn--bb-eka.at",
-      "ȡog.de": "xn--og-09a.de",
-      "☕.de": "xn--53h.de",
-      "I♥NY.de": "xn--iny-zx5a.de",
-      "ＡＢＣ・日本.co.jp": "xn--abc-rs4b422ycvb.co.jp",
-      "日本｡co｡jp": "xn--wgv71a.co.jp",
-      "日本｡co．jp": "xn--wgv71a.co.jp",
-      "x\u0327\u0301.de": "xn--x-xbb7i.de",
-      "x\u0301\u0327.de": "xn--x-xbb7i.de",
-      "σόλος.gr": "xn--wxaikc6b.gr",
-      "Σόλος.gr": "xn--wxaikc6b.gr",
-      "ΣΌΛΟΣ.grﻋﺮﺑﻲ.de": "xn--wxaikc6b.xn--gr-gtd9a1b0g.de",
-      "عربي.de": "xn--ngbrx4e.de",
-      "نامهای.de": "xn--mgba3gch31f.de",
-      "نامه\u200Cای.de": "xn--mgba3gch31f.de"
-    },
-    toAsciiTransitional0: {
-      "xn--bb-eka.at": "xn--bb-eka.at",
-      "XN--BB-EKA.AT": "xn--bb-eka.at",
-      "faß.de": "xn--fa-hia.de",
-      "fass.de": "fass.de",
-      "xn--fa-hia.de": "xn--fa-hia.de",
-      "not=std3": "not=std3",
-      "öbb.at": "xn--bb-eka.at",
-      "fäß.de": "xn--f-qfao.de",
-      "₹.com": "xn--yzg.com",
-      "𑀓.com": "xn--n00d.com",
-      "a‌b": "xn--ab-j1t",
-      "xn--ab-j1t": "xn--ab-j1t",
-      "ÖBB.at": "xn--bb-eka.at",
-      "ȡog.de": "xn--og-09a.de",
-      "☕.de": "xn--53h.de",
-      "I♥NY.de": "xn--iny-zx5a.de",
-      "ＡＢＣ・日本.co.jp": "xn--abc-rs4b422ycvb.co.jp",
-      "日本｡co｡jp": "xn--wgv71a.co.jp",
-      "日本｡co．jp": "xn--wgv71a.co.jp",
-      "x\u0327\u0301.de": "xn--x-xbb7i.de",
-      "x\u0301\u0327.de": "xn--x-xbb7i.de",
-      "σόλος.gr": "xn--wxaijb9b.gr",
-      "Σόλος.gr": "xn--wxaijb9b.gr",
-      "ΣΌΛΟΣ.grﻋﺮﺑﻲ.de": "xn--wxaikc6b.xn--gr-gtd9a1b0g.de",
-      "عربي.de": "xn--ngbrx4e.de",
-      "نامهای.de": "xn--mgba3gch31f.de",
-      "نامه\u200Cای.de": "xn--mgba3gch31f060k.de"
-    },
-    toAsciithrows: [
-      String.fromCodePoint(0xd0000), "\u0080.com"
-    ],
-    toAsciiTransitional1throws: [
-      "xn--a.com", "日本⒈co．jp"
-    ],
-    toAsciiTransitional0throws: [
-      "\u0080.com", "xn--a.com", "日本⒈co．jp"
-    ],
-    toAsciiUseStd3ASCIIthrows: [
-      "not=std3"
-    ],
-    toAsciiVerifyDnsLength0: {
-      "": ""
-    },
-    toAsciiVerifyDnsLength1throws: [
-      "", "this..is.almost.right", "a.".repeat(252 / 2) + "aa", "a".repeat(64)
-    ],
-    toAsciiVerifyDnsLength1throwsnot: [
-      "a.".repeat(252 / 2) + "a", "a".repeat(63)
-    ],
-    toUnicode: {
-      "öbb.at": "öbb.at",
-      "Öbb.at": "öbb.at",
-      "ÖBB.at": "öbb.at",
-      "O\u0308bb.at": "öbb.at",
-      "xn--bb-eka.at": "öbb.at",
-      "faß.de": "faß.de",
-      "fass.de": "fass.de",
-      "xn--fa-hia.de": "faß.de",
-      "not=std3": "not=std3",
-      "\ud83d\udca9": "\ud83d\udca9",
-      "\ud87e\udcca": "\ud84c\udc0a",
-      "\udb40\udd00\ud87e\udcca": "\ud84c\udc0a",
-      "fäß.de": "fäß.de",
-      "₹.com": "₹.com",
-      "𑀓.com": "𑀓.com",
-      "a‌b": "a\u200Cb",
-      "xn--ab-j1t": "a\u200Cb",
-      "ȡog.de": "ȡog.de",
-      "☕.de": "☕.de",
-      "I♥NY.de": "i♥ny.de",
-      "ＡＢＣ・日本.co.jp": "abc・日本.co.jp",
-      "日本｡co｡jp": "日本.co.jp",
-      "日本｡co．jp": "日本.co.jp",
-      "x\u0327\u0301.de": "x̧́.de",
-      "x\u0301\u0327.de": "x̧́.de",
-      "σόλος.gr": "σόλος.gr",
-      "Σόλος.gr": "σόλος.gr",
-      "ΣΌΛΟΣ.grﻋﺮﺑﻲ.de": "σόλοσ.grعربي.de",
-      "عربي.de": "عربي.de",
-      "نامهای.de": "نامهای.de",
-      "نامه\u200Cای.de": "نامه‌ای.de"
-    },
-    toUnicodethrows: [
-      String.fromCodePoint(0xd0000), "\u0080.com", "xn--a.com", "日本⒈co．jp"
-    ],
-    toUnicodeUseStd3ASCII1throws: [
-      "not=std3"
-    ]
-  };
-  //TODO xo linting as eslint replacement
+        const uts46 = idnaUts46;
+        const data = {
+          convert: {
+            'öbb.at': 'xn--bb-eka.at',
+            'faß.de': 'xn--fa-hia.de',
+          },
+          toAscii: {
+            '': '',
+            'faß.de': 'fass.de',
+            '\ud83d\udca9': 'xn--ls8h',
+            '\ud87e\udcca': 'xn--w60j',
+            '\udb40\udd00\ud87e\udcca': 'xn--w60j',
+          },
+          toAsciiTransitional1: {
+            'faß.de': 'fass.de',
+            'fass.de': 'fass.de',
+            'xn--fa-hia.de': 'xn--fa-hia.de',
+            'fäß.de': 'xn--fss-qla.de',
+            '₹.com': 'xn--yzg.com',
+            '𑀓.com': 'xn--n00d.com',
+            a‌b: 'ab',
+            'xn--ab-j1t': 'xn--ab-j1t',
+            'öbb.at': 'xn--bb-eka.at',
+            'ÖBB.at': 'xn--bb-eka.at',
+            'ȡog.de': 'xn--og-09a.de',
+            '☕.de': 'xn--53h.de',
+            'I♥NY.de': 'xn--iny-zx5a.de',
+            'ＡＢＣ・日本.co.jp': 'xn--abc-rs4b422ycvb.co.jp',
+            '日本｡co｡jp': 'xn--wgv71a.co.jp',
+            '日本｡co．jp': 'xn--wgv71a.co.jp',
+            'x\u0327\u0301.de': 'xn--x-xbb7i.de',
+            'x\u0301\u0327.de': 'xn--x-xbb7i.de',
+            'σόλος.gr': 'xn--wxaikc6b.gr',
+            'Σόλος.gr': 'xn--wxaikc6b.gr',
+            'ΣΌΛΟΣ.grﻋﺮﺑﻲ.de': 'xn--wxaikc6b.xn--gr-gtd9a1b0g.de',
+            'عربي.de': 'xn--ngbrx4e.de',
+            'نامهای.de': 'xn--mgba3gch31f.de',
+            'نامه\u200Cای.de': 'xn--mgba3gch31f.de',
+          },
+          toAsciiTransitional0: {
+            'xn--bb-eka.at': 'xn--bb-eka.at',
+            'XN--BB-EKA.AT': 'xn--bb-eka.at',
+            'faß.de': 'xn--fa-hia.de',
+            'fass.de': 'fass.de',
+            'xn--fa-hia.de': 'xn--fa-hia.de',
+            'not=std3': 'not=std3',
+            'öbb.at': 'xn--bb-eka.at',
+            'fäß.de': 'xn--f-qfao.de',
+            '₹.com': 'xn--yzg.com',
+            '𑀓.com': 'xn--n00d.com',
+            a‌b: 'xn--ab-j1t',
+            'xn--ab-j1t': 'xn--ab-j1t',
+            'ÖBB.at': 'xn--bb-eka.at',
+            'ȡog.de': 'xn--og-09a.de',
+            '☕.de': 'xn--53h.de',
+            'I♥NY.de': 'xn--iny-zx5a.de',
+            'ＡＢＣ・日本.co.jp': 'xn--abc-rs4b422ycvb.co.jp',
+            '日本｡co｡jp': 'xn--wgv71a.co.jp',
+            '日本｡co．jp': 'xn--wgv71a.co.jp',
+            'x\u0327\u0301.de': 'xn--x-xbb7i.de',
+            'x\u0301\u0327.de': 'xn--x-xbb7i.de',
+            'σόλος.gr': 'xn--wxaijb9b.gr',
+            'Σόλος.gr': 'xn--wxaijb9b.gr',
+            'ΣΌΛΟΣ.grﻋﺮﺑﻲ.de': 'xn--wxaikc6b.xn--gr-gtd9a1b0g.de',
+            'عربي.de': 'xn--ngbrx4e.de',
+            'نامهای.de': 'xn--mgba3gch31f.de',
+            'نامه\u200Cای.de': 'xn--mgba3gch31f060k.de',
+          },
+          toAsciithrows: [String.fromCodePoint(0xd0000), '\u0080.com'],
+          toAsciiTransitional1throws: ['xn--a.com', '日本⒈co．jp'],
+          toAsciiTransitional0throws: [
+            '\u0080.com',
+            'xn--a.com',
+            '日本⒈co．jp',
+          ],
+          toAsciiUseStd3ASCIIthrows: ['not=std3'],
+          toAsciiVerifyDnsLength0: {
+            '': '',
+          },
+          toAsciiVerifyDnsLength1throws: [
+            '',
+            'this..is.almost.right',
+            'a.'.repeat(252 / 2) + 'aa',
+            'a'.repeat(64),
+          ],
+          toAsciiVerifyDnsLength1throwsnot: [
+            'a.'.repeat(252 / 2) + 'a',
+            'a'.repeat(63),
+          ],
+          toUnicode: {
+            'öbb.at': 'öbb.at',
+            'Öbb.at': 'öbb.at',
+            'ÖBB.at': 'öbb.at',
+            'O\u0308bb.at': 'öbb.at',
+            'xn--bb-eka.at': 'öbb.at',
+            'faß.de': 'faß.de',
+            'fass.de': 'fass.de',
+            'xn--fa-hia.de': 'faß.de',
+            'not=std3': 'not=std3',
+            '\ud83d\udca9': '\ud83d\udca9',
+            '\ud87e\udcca': '\ud84c\udc0a',
+            '\udb40\udd00\ud87e\udcca': '\ud84c\udc0a',
+            'fäß.de': 'fäß.de',
+            '₹.com': '₹.com',
+            '𑀓.com': '𑀓.com',
+            a‌b: 'a\u200Cb',
+            'xn--ab-j1t': 'a\u200Cb',
+            'ȡog.de': 'ȡog.de',
+            '☕.de': '☕.de',
+            'I♥NY.de': 'i♥ny.de',
+            'ＡＢＣ・日本.co.jp': 'abc・日本.co.jp',
+            '日本｡co｡jp': '日本.co.jp',
+            '日本｡co．jp': '日本.co.jp',
+            'x\u0327\u0301.de': 'x̧́.de',
+            'x\u0301\u0327.de': 'x̧́.de',
+            'σόλος.gr': 'σόλος.gr',
+            'Σόλος.gr': 'σόλος.gr',
+            'ΣΌΛΟΣ.grﻋﺮﺑﻲ.de': 'σόλοσ.grعربي.de',
+            'عربي.de': 'عربي.de',
+            'نامهای.de': 'نامهای.de',
+            'نامه\u200Cای.de': 'نامه‌ای.de',
+          },
+          toUnicodethrows: [
+            String.fromCodePoint(0xd0000),
+            '\u0080.com',
+            'xn--a.com',
+            '日本⒈co．jp',
+          ],
+          toUnicodeUseStd3ASCII1throws: ['not=std3'],
+        };
+        //TODO xo linting as eslint replacement
 
-  // --- method convert
-  eL.innerHTML += "<h2>Method convert</h2>";
-  let tmp = data.convert;
-  Object.keys(tmp).forEach(key => {
-    const val = uts46.convert(key);
-    const ok = (key === val.IDN) && (tmp[key] === val.PC);
-    eL.innerHTML += `<div class="${ok?"ok":"err"}"><b>${ok ? "OK" : "FAIL"}</b> ${key}: ${val.PC}</div>`;
-  });
+        // --- method convert
+        eL.innerHTML += '<h2>Method convert</h2>';
+        let tmp = data.convert;
+        Object.keys(tmp).forEach((key) => {
+          const val = uts46.convert(key);
+          const ok = key === val.IDN && tmp[key] === val.PC;
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${key}: ${val.PC}</div>`;
+        });
 
-  // --- method toAscii
-  eL.innerHTML += "<h2>Method toAscii</h2>";
-  tmp = data.toAscii;
-  Object.keys(tmp).forEach(key => {
-    let val = uts46.toAscii(key);
-    const ok = (tmp[key] === val);
-    if (/^[\s ]*$/.test(key)) {
-      key = `&quot;${key}&quot;`;
-    }
-    if (/^[\s ]*$/.test(val)) {
-      val = `&quot;${val}&quot;`;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok ? "OK" : "FAIL"}</b> ${key}: ${val}</div>`;
-  });
+        // --- method toAscii
+        eL.innerHTML += '<h2>Method toAscii</h2>';
+        tmp = data.toAscii;
+        Object.keys(tmp).forEach((key) => {
+          let val = uts46.toAscii(key);
+          const ok = tmp[key] === val;
+          if (/^[\s ]*$/.test(key)) {
+            key = `&quot;${key}&quot;`;
+          }
+          if (/^[\s ]*$/.test(val)) {
+            val = `&quot;${val}&quot;`;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${key}: ${val}</div>`;
+        });
 
-  // --- method toAscii (transitional: false)
-  eL.innerHTML += "<h3>... transitional: false</h3>";
-  tmp = data.toAsciiTransitional0;
-  Object.keys(tmp).forEach(key => {
-    const val = uts46.toAscii(key, { transitional: false });
-    const ok = (tmp[key] === val);
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok ? "OK" : "FAIL"}</b> ${key}: ${val}</div>`;
-  });
+        // --- method toAscii (transitional: false)
+        eL.innerHTML += '<h3>... transitional: false</h3>';
+        tmp = data.toAsciiTransitional0;
+        Object.keys(tmp).forEach((key) => {
+          const val = uts46.toAscii(key, { transitional: false });
+          const ok = tmp[key] === val;
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${key}: ${val}</div>`;
+        });
 
-  // --- method toAscii (transitional: true)
-  eL.innerHTML += "<h3>... transitional: true</h3>";
-  tmp = data.toAsciiTransitional1;
-  Object.keys(tmp).forEach(key => {
-    const val = uts46.toAscii(key, {transitional: true});
-    const ok = (tmp[key] === val);
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok ? "OK" : "FAIL"}</b> ${key}: ${val}</div>`;
-  });
+        // --- method toAscii (transitional: true)
+        eL.innerHTML += '<h3>... transitional: true</h3>';
+        tmp = data.toAsciiTransitional1;
+        Object.keys(tmp).forEach((key) => {
+          const val = uts46.toAscii(key, { transitional: true });
+          const ok = tmp[key] === val;
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${key}: ${val}</div>`;
+        });
 
-  // --- method toAscii (throws)
-  eL.innerHTML += "<h3>... throws</h3>";
-  tmp = data.toAsciithrows;
-  tmp.forEach(val => {
-    let ok;
-    try {
-      uts46.toAscii(val);
-      ok = false;
-    } catch (e) {
-      ok = true;
-    }
-    if (/^[\s ]*$/.test(val)) {
-      val = `&quot;${val}&quot;`;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok?"OK":"FAIL"}</b> ${val}</div>`;
-  });
+        // --- method toAscii (throws)
+        eL.innerHTML += '<h3>... throws</h3>';
+        tmp = data.toAsciithrows;
+        tmp.forEach((val) => {
+          let ok;
+          try {
+            uts46.toAscii(val);
+            ok = false;
+          } catch (e) {
+            ok = true;
+          }
+          if (/^[\s ]*$/.test(val)) {
+            val = `&quot;${val}&quot;`;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${val}</div>`;
+        });
 
-  // --- method toAscii (transitional: true & throws)
-  eL.innerHTML += "<h3>... throws & transitional: true</h3>";
-  tmp = data.toAsciiTransitional1throws;
-  tmp.forEach(val => {
-    let ok;
-    try {
-      uts46.toAscii(val, { transitional: true });
-      ok = false;
-    } catch (e) {
-      ok = true;
-    }
-    if (/^[\s ]*$/.test(val)) {
-      val = `&quot;${val}&quot;`;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok ? "OK" : "FAIL"}</b> ${val}</div>`;
-  });
+        // --- method toAscii (transitional: true & throws)
+        eL.innerHTML += '<h3>... throws & transitional: true</h3>';
+        tmp = data.toAsciiTransitional1throws;
+        tmp.forEach((val) => {
+          let ok;
+          try {
+            uts46.toAscii(val, { transitional: true });
+            ok = false;
+          } catch (e) {
+            ok = true;
+          }
+          if (/^[\s ]*$/.test(val)) {
+            val = `&quot;${val}&quot;`;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${val}</div>`;
+        });
 
-  // --- method toAscii (transitional: false & throws)
-  eL.innerHTML += "<h3>... throws & transitional: false</h3>";
-  tmp = data.toAsciiTransitional0throws;
-  tmp.forEach(val => {
-    let ok;
-    try {
-      uts46.toAscii(val, {transitional: false});
-      ok = false;
-    } catch (e) {
-      ok = true;
-    }
-    if (/^[\s ]*$/.test(val)) {
-      val = `&quot;${val}&quot;`;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok ? "OK" : "FAIL"}</b> ${val}</div>`;
-  });
+        // --- method toAscii (transitional: false & throws)
+        eL.innerHTML += '<h3>... throws & transitional: false</h3>';
+        tmp = data.toAsciiTransitional0throws;
+        tmp.forEach((val) => {
+          let ok;
+          try {
+            uts46.toAscii(val, { transitional: false });
+            ok = false;
+          } catch (e) {
+            ok = true;
+          }
+          if (/^[\s ]*$/.test(val)) {
+            val = `&quot;${val}&quot;`;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${val}</div>`;
+        });
 
-  // --- method toAscii (useStd3ASCII: true, throws)
-  eL.innerHTML += "<h3>... throws & useStd3ASCII: true</h3>";
-  tmp = data.toAsciiUseStd3ASCIIthrows;
-  tmp.forEach(val => {
-    let ok;
-    try {
-      uts46.toAscii(val, { useStd3ASCII: true });
-      ok = false;
-    } catch(e) {
-      ok = true;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok?"OK":"FAIL"}</b> ${val}</div>`;    
-  });
+        // --- method toAscii (useStd3ASCII: true, throws)
+        eL.innerHTML += '<h3>... throws & useStd3ASCII: true</h3>';
+        tmp = data.toAsciiUseStd3ASCIIthrows;
+        tmp.forEach((val) => {
+          let ok;
+          try {
+            uts46.toAscii(val, { useStd3ASCII: true });
+            ok = false;
+          } catch (e) {
+            ok = true;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${val}</div>`;
+        });
 
-  // --- method toAscii (verifyDnsLength: false)
-  eL.innerHTML += "<h3>... verifyDnsLength: false</h3>";
-  tmp = data.toAsciiVerifyDnsLength0;
-  Object.keys(tmp).forEach(key => {
-    let val = uts46.toAscii(key, { verifyDnsLength: false });
-    const ok = (tmp[key] === val);
-    if (/^[\s ]*$/.test(key)) {
-      key = `&quot;${key}&quot;`;
-    }
-    if (/^[\s ]*$/.test(val)) {
-      val = `&quot;${val}&quot;`;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok ? "OK" : "FAIL"}</b> ${key}: ${val}</div>`;
-  });
+        // --- method toAscii (verifyDnsLength: false)
+        eL.innerHTML += '<h3>... verifyDnsLength: false</h3>';
+        tmp = data.toAsciiVerifyDnsLength0;
+        Object.keys(tmp).forEach((key) => {
+          let val = uts46.toAscii(key, { verifyDnsLength: false });
+          const ok = tmp[key] === val;
+          if (/^[\s ]*$/.test(key)) {
+            key = `&quot;${key}&quot;`;
+          }
+          if (/^[\s ]*$/.test(val)) {
+            val = `&quot;${val}&quot;`;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${key}: ${val}</div>`;
+        });
 
-  // --- method toAscii (verifyDnsLength: true, throws)
-  eL.innerHTML += "<h3>... throws & verifyDnsLength: true</h3>";
-  tmp = data.toAsciiVerifyDnsLength1throws;
-  tmp.forEach(val => {
-    let ok;
-    try {
-      uts46.toAscii(val, { verifyDnsLength: true });
-      ok = false;
-    } catch (e) {
-      ok = true;
-    }
-    if (/^[\s ]*$/.test(val)) {
-      val = `&quot;${val}&quot;`;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok?"OK":"FAIL"}</b> ${val}</div>`;
-  });
+        // --- method toAscii (verifyDnsLength: true, throws)
+        eL.innerHTML += '<h3>... throws & verifyDnsLength: true</h3>';
+        tmp = data.toAsciiVerifyDnsLength1throws;
+        tmp.forEach((val) => {
+          let ok;
+          try {
+            uts46.toAscii(val, { verifyDnsLength: true });
+            ok = false;
+          } catch (e) {
+            ok = true;
+          }
+          if (/^[\s ]*$/.test(val)) {
+            val = `&quot;${val}&quot;`;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${val}</div>`;
+        });
 
-  // --- method toAscii (verifyDnsLength: true, throws not)
-  eL.innerHTML += "<h3>... throws not & verifyDnsLength: true</h3>";
-  tmp = data.toAsciiVerifyDnsLength1throwsnot;
-  tmp.forEach(val => {
-    let ok;
-    try {
-      uts46.toAscii(val, { verifyDnsLength: true });
-      ok = true;
-    } catch (e) {
-      ok = false;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok?"OK":"FAIL"}</b> ${val}</div>`;
-  });
+        // --- method toAscii (verifyDnsLength: true, throws not)
+        eL.innerHTML += '<h3>... throws not & verifyDnsLength: true</h3>';
+        tmp = data.toAsciiVerifyDnsLength1throwsnot;
+        tmp.forEach((val) => {
+          let ok;
+          try {
+            uts46.toAscii(val, { verifyDnsLength: true });
+            ok = true;
+          } catch (e) {
+            ok = false;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${val}</div>`;
+        });
 
-  // --- method toUnicode
-  eL.innerHTML += "<h2>Method toUnicde</h2>";
-  tmp = data.toUnicode;
-  Object.keys(tmp).forEach(key => {
-    let val = uts46.toUnicode(key);
-    const ok = (tmp[key] === val);
-    if (/^[\s ]*$/.test(key)) {
-      key = `&quot;${key}&quot;`;
-    }
-    if (/^[\s ]*$/.test(val)) {
-      val = `&quot;${val}&quot;`;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok ? "OK" : "FAIL"}</b> ${key}: ${val}</div>`;
-  });
+        // --- method toUnicode
+        eL.innerHTML += '<h2>Method toUnicde</h2>';
+        tmp = data.toUnicode;
+        Object.keys(tmp).forEach((key) => {
+          let val = uts46.toUnicode(key);
+          const ok = tmp[key] === val;
+          if (/^[\s ]*$/.test(key)) {
+            key = `&quot;${key}&quot;`;
+          }
+          if (/^[\s ]*$/.test(val)) {
+            val = `&quot;${val}&quot;`;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${key}: ${val}</div>`;
+        });
 
-  // --- method toUnicode (throws)
-  eL.innerHTML += "<h3>... throws</h3>";
-  tmp = data.toUnicodethrows;
-  tmp.forEach(val => {
-    let ok;
-    try {
-      uts46.toUnicode(val);
-      ok = false;
-    } catch (e) {
-      ok = true;
-    }
-    if (/^[\s ]*$/.test(val)) {
-      val = `&quot;${val}&quot;`;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok?"OK":"FAIL"}</b> ${val}</div>`;
-  });
+        // --- method toUnicode (throws)
+        eL.innerHTML += '<h3>... throws</h3>';
+        tmp = data.toUnicodethrows;
+        tmp.forEach((val) => {
+          let ok;
+          try {
+            uts46.toUnicode(val);
+            ok = false;
+          } catch (e) {
+            ok = true;
+          }
+          if (/^[\s ]*$/.test(val)) {
+            val = `&quot;${val}&quot;`;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${val}</div>`;
+        });
 
-  // --- method toUnicode (useStd3ASCII: true, throws)
-  eL.innerHTML += "<h3>... useStd3ASCII: true & throws</h3>";
-  tmp = data.toUnicodeUseStd3ASCII1throws;
-  tmp.forEach(val => {
-    let ok;
-    try {
-      uts46.toUnicode(val, {useStd3ASCII: true});
-      ok = false;
-    } catch (e) {
-      ok = true;
-    }
-    if (/^[\s ]*$/.test(val)) {
-      val = `&quot;${val}&quot;`;
-    }
-    eL.innerHTML += `<div class="${ok ? "ok" : "err"}"><b>${ok ? "OK" : "FAIL"}</b> ${val}</div>`;
-  });
-
-}
-</script>
-</head>
-<body onload="start()">
-<div id="convert"></div>
-</body>
+        // --- method toUnicode (useStd3ASCII: true, throws)
+        eL.innerHTML += '<h3>... useStd3ASCII: true & throws</h3>';
+        tmp = data.toUnicodeUseStd3ASCII1throws;
+        tmp.forEach((val) => {
+          let ok;
+          try {
+            uts46.toUnicode(val, { useStd3ASCII: true });
+            ok = false;
+          } catch (e) {
+            ok = true;
+          }
+          if (/^[\s ]*$/.test(val)) {
+            val = `&quot;${val}&quot;`;
+          }
+          eL.innerHTML += `<div class="${ok ? 'ok' : 'err'}"><b>${
+            ok ? 'OK' : 'FAIL'
+          }</b> ${val}</div>`;
+        });
+      }
+    </script>
+  </head>
+  <body onload="start()">
+    <div id="convert"></div>
+  </body>
 </html>

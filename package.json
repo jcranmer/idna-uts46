@@ -1,81 +1,77 @@
 {
-	"name": "idna-uts46-hx",
-	"description": "A UTS #46 processing algorithm for IDNA2008 strings",
-	"version": "4.1.2",
-	"private": false,
-	"author": {
-		"name": "Kai Schwarz",
-		"email": "kschwarz@hexonet.net"
-	},
-	"main": "uts46.js",
-	"typings": "index.d.ts",
-	"license": "MIT",
-	"engines": {
-		"node": ">=16.15.1",
-		"npm": ">=8.11.1"
-	},
-	"homepage": "https://github.com/hexonet/idna-uts46",
-	"repository": "github:hexonet/idna-uts46",
-	"bugs": "https://github.com/hexonet/idna-uts46/issues",
-	"maintainers": [
-		{
-			"name": "Kai Schwarz",
-			"email": "kschwarz@hexonet.net"
-		}
-	],
-	"keywords": [
-		"hexonet",
-		"unicode",
-		"idn",
-		"idna",
-		"domain"
-	],
-	"nyc": {
-		"reporter": [
-			"html",
-			"text"
-		],
-		"exclude": [
-			"**/*.spec.js",
-			"idna-map.js"
-		]
-	},
-	"xo": {
-		"prettier": true,
-		"globals": [],
-		"ignores": [
-			"!@(vendor|coverage|.nyc_output|.github|node_modules|pkg|build)/**",
-			"!**/*.@(all|min).js"
-		]
-	},
-	"unicodeVersion": "15.0.0",
-	"scripts": {
-		"test": "npm run test-COVERAGE --silent",
-		"test-MOCHA": "./node_modules/.bin/_mocha $(find ./test -type f -name '*.spec.js')",
-		"test-COVERAGE": "cross-env NODE_ENV=development nyc npm run test-MOCHA --silent",
-		"lint": "xo"
-	},
-	"dependencies": {
-		"punycode": "^2.1.1"
-	},
-	"overrides": {
-		"glob-parent": "^6.0.2"
-	},
-	"devDependencies": {
-		"@semantic-release/changelog": "^6.0.2",
-		"@semantic-release/exec": "^6.0.2",
-		"@semantic-release/git": "^10.0.0",
-		"cross-env": "^7.0.3",
-		"fancy-log": "^2.0.0",
-		"gulp": "^4.0.2",
-		"gulp-esbuild": "^0.11.0",
-		"gulp-prettier": "^4.0.0",
-		"gulp-rename": "^2.0.0",
-		"gulp-terser": "^2.1.0",
-		"mocha": "^10.0.0",
-		"nyc": "^15.1.0",
-		"prettier-config-xo": "^2.0.0",
-		"semantic-release": "^20.0.3",
-		"xo": "^0.53.1"
-	}
+  "name": "idna-uts46-hx",
+  "description": "A UTS #46 processing algorithm for IDNA2008 strings",
+  "version": "4.0.0",
+  "private": false,
+  "module": "dist/index.esm.js",
+  "main": "dist/index.cjs.js",
+  "typings": "dist/index.d.ts",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=16"
+  },
+  "homepage": "https://github.com/hexonet/idna-uts46",
+  "repository": "github:hexonet/idna-uts46",
+  "bugs": "https://github.com/hexonet/idna-uts46/issues",
+  "keywords": [
+    "unicode",
+    "idn",
+    "idna",
+    "domain"
+  ],
+  "nyc": {
+    "reporter": [
+      "html",
+      "text"
+    ],
+    "exclude": [
+      "test",
+      "scripts",
+      "rollup*"
+    ]
+  },
+  "unicodeVersion": "15.0.0",
+  "scripts": {
+    "prettier": "prettier -u --write \"**/*\"",
+    "build": "npm run build:unicode-tables && npm run build:rollup",
+    "pretest": "npm run build",
+    "test": "mocha",
+    "test:coverage": "cross-env NODE_ENV=development nyc npm run test --silent",
+    "lint": "eslint .",
+    "prepare": "npm run build && npx lint-staged",
+    "build:unicode-upgrade": "esr scripts/unicode-upgrade.ts",
+    "build:unicode-checkversion": "esr scripts/unicode-checkversion.ts",
+    "build:unicode-tables": "esr scripts/build-unicode-tables.ts 15.0.0",
+    "build:rollup": "rollup -c && rollup -c rollup-esm.config.mjs"
+  },
+  "dependencies": {
+    "punycode": "^2.1.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
+    "@types/axios": "^0.14.0",
+    "axios": "^1.3.4",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.17.11",
+    "esbuild-runner": "^2.2.1",
+    "eslint": "^8.35.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "lint-staged": "^13.0.0",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.6.2",
+    "rollup": "^3.18.0",
+    "rollup-plugin-bundle-size": "^1.0.3",
+    "ts-node": "^10.8.1"
+  },
+  "lint-staged": {
+    "*": "prettier -u --write"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "singleQuote": true
+  }
 }

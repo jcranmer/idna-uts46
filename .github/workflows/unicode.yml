@@ -15,7 +15,7 @@ jobs:
           check-latest: true
       - name: Install dependencies
         run: npm ci
-      - run: gulp checkUnicodeVersion
+      - run: npm run build:unicode-checkversion
   upgrade:
     name: Upgrade Version
     runs-on: ubuntu-latest
@@ -32,17 +32,14 @@ jobs:
         with:
           node-version: 18
           check-latest: true
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
       - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip -V
-          pip install -r requirements.txt
-          npm ci
+        run: npm ci
+      - name: Upgrade Unicode Version
+        run: npm run build:unicode-upgrade
       - name: Generate IDNA Mapping File
-        run: ./build-unicode-tables.py $(gulp checkUnicodeVersion --silent | grep Latest | sed 's/^.*version //g' | sed 's/ detected\.$//g')
+        run: npm run build
+      - name: Auto-Lint Code
+        run: npx lint-staged
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
@@ -51,5 +48,5 @@ jobs:
           branch: upgradeUnicode
           base: master
           title: 'Upgrade Unicode to latest Version'
-          assignees: papakai
-          reviewers: papakai
+          assignees: KaiSchwarz-cnic
+          reviewers: KaiSchwarz-cnic
