@@ -1,3 +1,12 @@
+## [5.0.2](https://github.com/hexonet/idna-uts46/compare/v5.0.1...v5.0.2) (2023-03-09)
+
+
+### Bug Fixes
+
+* **build:** add missing devDependencies ([b3f692a](https://github.com/hexonet/idna-uts46/commit/b3f692a0f7dd5a80dac1b0ed0ab2647862bf03dd))
+* **build:** added missing semantic-release configuration file and typings file ([bd3f43a](https://github.com/hexonet/idna-uts46/commit/bd3f43a8de68d5defe8245a7acf6d539e63799d7))
+* **dist:** some minor review and cleanup of typings ([3fdff33](https://github.com/hexonet/idna-uts46/commit/3fdff33dd360c3ff48f4e91d9f0ced6e25c93409))
+
 ## [4.1.2](https://github.com/hexonet/idna-uts46/compare/v4.1.1...v4.1.2) (2022-12-09)
 
 
