@@ -1,21 +1,3 @@
-# Composer
-composer.phar
-composer.lock
-vendor
-
-# npm
-node_modules
-package-lock.json
-
-# Coverage Reporting
-report
-
-# Generated Archives
-pkg
-build
-
-# JS Build and Bundles
-**/*.all.css
-**/*.all.js
-**/*.min.css
-**/*.min.js
+coverage
+.nyc_output
+dist
