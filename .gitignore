@@ -1,6 +1,7 @@
 dist/*
 # Web bundle should always be available on github raw
 !dist/index.bundle.js
+!dist/index.d.ts
 
 coverage
 node_modules

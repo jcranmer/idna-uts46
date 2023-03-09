@@ -21,10 +21,6 @@ jobs:
           check-latest: true
       - name: Install dependencies
         run: npm ci
-      - name: Build files
-        run: |
-          npm run build
-          npx lint-staged
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
