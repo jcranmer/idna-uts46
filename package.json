@@ -3,7 +3,7 @@
   "description": "A UTS #46 processing algorithm for IDNA2008 strings",
   "version": "5.0.3",
   "private": false,
-  "main": "dist/index",
+  "main": "dist/index.cjs",
   "typings": "dist/index.d.ts",
   "license": "MIT",
   "sideEffects": false,
