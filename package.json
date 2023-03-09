@@ -1,7 +1,7 @@
 {
   "name": "idna-uts46-hx",
   "description": "A UTS #46 processing algorithm for IDNA2008 strings",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "private": false,
   "main": "dist/index",
   "typings": "dist/index.d.ts",

@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/hexonet/idna-uts46/compare/v5.0.2...v5.0.3) (2023-03-09)
+
+
+### Bug Fixes
+
+* **rollup:** merged config files ([05c22d8](https://github.com/hexonet/idna-uts46/commit/05c22d89615fc9d5af58c34cfb71722d30fcc222))
+
 ## [5.0.2](https://github.com/hexonet/idna-uts46/compare/v5.0.1...v5.0.2) (2023-03-09)
 
 
