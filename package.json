@@ -3,9 +3,8 @@
   "description": "A UTS #46 processing algorithm for IDNA2008 strings",
   "version": "4.0.0",
   "private": false,
-  "module": "dist/index.esm.js",
-  "main": "dist/index.cjs.js",
-  "typings": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "main": "dist/index.cjs",
   "license": "MIT",
   "sideEffects": false,
   "engines": {
