@@ -1,3 +1,10 @@
+## [5.0.4](https://github.com/hexonet/idna-uts46/compare/v5.0.3...v5.0.4) (2023-03-09)
+
+
+### Bug Fixes
+
+* **package.json:** fix path to main file ([77561b7](https://github.com/hexonet/idna-uts46/commit/77561b70d16fbab75ed40c3e3174b61cb56367cd))
+
 ## [5.0.3](https://github.com/hexonet/idna-uts46/compare/v5.0.2...v5.0.3) (2023-03-09)
 
 
