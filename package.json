@@ -49,11 +49,11 @@
     "punycode": "^2.1.1"
   },
   "devDependencies": {
-    "@hexonet/semantic-release-github-npm-config": "^3.0.3",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
     "@semantic-release/exec": "^6.0.3",
     "@types/axios": "^0.14.0",
+    "@types/node": "^18.15.0",
     "axios": "^1.3.4",
     "cross-env": "^7.0.3",
     "esbuild": "^0.17.11",
@@ -66,7 +66,6 @@
     "rollup": "^3.18.0",
     "rollup-plugin-bundle-size": "^1.0.3",
     "semantic-release": "^20.1.1",
-    "ts-node": "^10.8.1",
     "tsx": "^3.12.3"
   },
   "lint-staged": {

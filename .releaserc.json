@@ -1,0 +1,34 @@
+{
+  "plugins": [
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "npm run build && npx lint-staged"
+      }
+    ],
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "HISTORY.md"
+      }
+    ],
+    "@semantic-release/npm",
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "HISTORY.md",
+          "@(.releaserc|.sharedreleaserc|package?(-lock)).json",
+          "release.config.js",
+          "dist/index.d.ts",
+          "dist/index.mjs",
+          "dist/index.cjs",
+          "dist/index.bundle.js"
+        ]
+      }
+    ],
+    "@semantic-release/github"
+  ]
+}
