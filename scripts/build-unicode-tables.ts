@@ -1,10 +1,14 @@
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import {
   compressblockIndexes,
   stringifyBlocks,
 } from './stringify-compress-array';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const IDNA_MAP_OUTPUT_PATH = path.join(__dirname, '..', 'src', 'idna-map.js');
 async function downloadUnicode(version: string) {
