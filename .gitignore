@@ -4,3 +4,6 @@ test/IdnaTest.txt
 npm-debug.log*
 .nyc_output
 .vscode
+test/mocha.css
+test/index.mjs
+test/index.bundle.js

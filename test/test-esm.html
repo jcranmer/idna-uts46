@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <title>IDNA UTS#46 Mocha tests</title>
     <link rel="stylesheet" href="mocha.css" />
-    <script src="index.bundle.js"></script>
     <style>
       #convert {
         padding: 50px;
@@ -16,17 +15,13 @@
         background-color: greenyellow;
       }
     </style>
-    <script>
-      function start() {
+    <script type="module">
+      import * as uts46 from "./index.mjs";
+      
+      export function start() {
         const eL = document.getElementById('convert');
-        if (!idnaUts46) {
-          debugger;
-          alert('... Failed loading IDN Converter');
-          return;
-        }
         eL.innerHTML = '<h1 class="ok">... IDN Converter loaded</b><h1>';
 
-        const uts46 = idnaUts46;
         const data = {
           convert: {
             'öbb.at': 'xn--bb-eka.at',
@@ -388,9 +383,10 @@
           }</b> ${val}</div>`;
         });
       }
+      start();
     </script>
   </head>
-  <body onload="start()">
+  <body>
     <div id="convert"></div>
   </body>
 </html>

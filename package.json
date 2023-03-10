@@ -40,6 +40,8 @@
     "pretest": "npm run build",
     "test": "mocha",
     "test:coverage": "cross-env NODE_ENV=development nyc npm run test --silent",
+    "test:serve": "npm run test:serve-prepare && serve",
+    "test:serve-prepare": "cp node_modules/mocha/mocha.css dist/index.bundle.js dist/index.mjs test",
     "lint": "eslint .",
     "prepare": "npm run build && npx lint-staged",
     "build:unicode-upgrade": "tsx scripts/unicode-upgrade.ts",
@@ -70,6 +72,7 @@
     "rollup": "^3.18.0",
     "rollup-plugin-bundle-size": "^1.0.3",
     "semantic-release": "^20.1.1",
+    "serve": "^14.2.0",
     "tsx": "^3.12.3"
   },
   "lint-staged": {
