@@ -1,3 +1,10 @@
+## [5.0.5](https://github.com/hexonet/idna-uts46/compare/v5.0.4...v5.0.5) (2023-03-10)
+
+
+### Bug Fixes
+
+* **esm:** switched to type module while CJS + Bundle can still be directly accessed via dist folder ([c3e1064](https://github.com/hexonet/idna-uts46/commit/c3e10644f6ef64ecd6fea00d609ae6d37f5b2d88))
+
 ## [5.0.4](https://github.com/hexonet/idna-uts46/compare/v5.0.3...v5.0.4) (2023-03-09)
 
 
