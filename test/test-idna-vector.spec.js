@@ -1,8 +1,8 @@
 'use strict';
 
-const assert = require('assert');
-const fs = require('fs');
-const uts46 = require('../dist/index.cjs');
+import assert from 'assert';
+import fs from 'fs';
+import * as uts46 from '../dist/index.mjs';
 
 function matchInaneIDNARules(result, tooLong) {
   let labels = result.split('.');

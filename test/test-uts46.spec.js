@@ -1,6 +1,7 @@
-//"use strict";
-const assert = require('assert');
-const uts46 = require('../dist/index.cjs');
+'use strict';
+
+import assert from 'assert';
+import * as uts46 from '../dist/index.mjs';
 
 suite('toASCII', function () {
   test('Convert method tests', function () {
