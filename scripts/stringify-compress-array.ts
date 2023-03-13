@@ -1,8 +1,7 @@
 // although minifiers are able to replace variable names with short alphabet letters,
 // this package benefits most from numbers inside the arrays being deduplicated
-// this alphabet is used to deduplicate the numbers. Note that "f" is used for
-// a shorthand of Array.prototype.fill and thus is not found here
-const alphabet = ['b', 'c', 'd', 'e', 'g'];
+// dynamic var names prefixed with `v` are used to deduplicate the numbers.
+// Note that "f" is used for a shorthand of Array.prototype.fill and thus is not found here
 
 export const compressblockIndexes = (blockIndexes: number[]): string => {
   let toReturn = `${blockIndexes.toString()},`;
@@ -42,24 +41,38 @@ export const stringifyBlocks = (blocks: Array<Array<number>>) => {
     });
   });
   let stringifiedArr = blocks
-    .map((block) => `new a([${block.toString()}])`)
+    .map((block) => `a([${block.toString()}])`)
     .join(',');
-  const toReplace = Object.entries(freq)
-    .filter(([elem, freq]) => freq > 7)
-    .filter(([elem, freq]) => String(elem).length > 1)
-    .sort(([, freq1], [, freq2]) => freq2 - freq1)
-    .slice(0, alphabet.length);
-  console.log({ toReplace });
 
-  let pre = '';
+  const toReplace = Object.entries(freq)
+    .filter(([elem, freq]) => freq > 10) // lowest size up to now
+    .filter(([elem, freq]) => String(elem).length > 1)
+    .sort(([, freq1], [, freq2]) => freq2 - freq1);
+
+  const blocked = ['a', 'f']; // special functions see build-unicode-tables.ts
+  const alpha1 = Array.from(Array(26)).map((e, i) =>
+    String.fromCharCode(i + 65),
+  );
+  const alpha2 = Array.from(Array(26))
+    .map((e, i) => String.fromCharCode(i + 97))
+    .filter((x) => !blocked.includes(x));
+
+  const alphabet = [
+    ...alpha1,
+    ...alpha2,
+    ...alpha1.map((x) => x + x),
+    ...alpha2.map((x) => x + x),
+  ];
+
+  let pre = 'let ';
   toReplace.forEach(([elem, freq], i) => {
     const letter = alphabet[i];
-    pre += `let ${letter} = ${elem};\n`;
+    pre += `${letter}=${elem},`;
     const strToReplace = `([^0-9])${elem}([^0-9])`;
     const regex = new RegExp(strToReplace, 'g');
     while (stringifiedArr.match(regex)) {
       stringifiedArr = stringifiedArr.replace(regex, `$1${letter}$2`);
     }
   });
-  return `${pre}\nconst blocks = [${stringifiedArr}];\n`;
+  return `${pre.slice(0, -1)};\nconst blocks = [${stringifiedArr}];\n`;
 };

@@ -318,13 +318,10 @@ function buildUnicodeMap(idnaMapTable: string, derivedGeneralCategory: string) {
 the scripts/build-unicode-tables.ts script. Edit that
 instead of this file. \*\/
 // shorthand for Array.prototype.fill
-function f(e,t) {
-  return Array(t).fill(e);
-}
+let f = (e,t) => Array(t).fill(e);
 // shorthand for Uint32Array
-const a = Uint32Array;
+let a = (x) => new Uint32Array(x);
 `;
-
   toWrite += stringifyBlocks(blocks as Array<Array<number>>);
 
   // Now emit the block index map
