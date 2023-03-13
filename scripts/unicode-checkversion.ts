@@ -1,3 +1,5 @@
+import pckjson from '../package.json' assert { type: 'json' };
+
 async function getLatestUnicodeVersion() {
   let response;
   try {
@@ -22,8 +24,7 @@ async function main() {
     process.exit(0);
   }
 
-  const currentVersion = require('../package.json').unicodeVersion;
-  if (latestVersion === currentVersion) {
+  if (latestVersion === pckjson.unicodeVersion) {
     console.log('Latest unicode version already in use.');
     process.exit(0);
   }
