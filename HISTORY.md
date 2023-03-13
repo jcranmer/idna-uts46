@@ -1,3 +1,10 @@
+## [5.0.6](https://github.com/hexonet/idna-uts46/compare/v5.0.5...v5.0.6) (2023-03-13)
+
+
+### Performance Improvements
+
+* **build:** minor improvement to file sizes of dist files ([19e61da](https://github.com/hexonet/idna-uts46/commit/19e61da7cd4e33e402456466de4cfe210dccf25d))
+
 ## [5.0.5](https://github.com/hexonet/idna-uts46/compare/v5.0.4...v5.0.5) (2023-03-10)
 
 
