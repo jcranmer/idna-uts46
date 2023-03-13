@@ -45,7 +45,7 @@ export const stringifyBlocks = (blocks: Array<Array<number>>) => {
     .join(',');
 
   const toReplace = Object.entries(freq)
-    .filter(([elem, freq]) => freq > 10) // lowest size up to now
+    .filter(([elem, freq]) => freq > 11) // lowest size up to now
     .filter(([elem, freq]) => String(elem).length > 1)
     .sort(([, freq1], [, freq2]) => freq2 - freq1);
 
