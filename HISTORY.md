@@ -1,3 +1,10 @@
+## [5.0.7](https://github.com/hexonet/idna-uts46/compare/v5.0.6...v5.0.7) (2023-03-13)
+
+
+### Performance Improvements
+
+* **build:** improve build size again (1kb) ([8b12436](https://github.com/hexonet/idna-uts46/commit/8b12436052c799587c421ef0cfc11fbe420aab51))
+
 ## [5.0.6](https://github.com/hexonet/idna-uts46/compare/v5.0.5...v5.0.6) (2023-03-13)
 
 
