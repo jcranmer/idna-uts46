@@ -34,7 +34,7 @@ async function main() {
   pckjson.unicodeVersion = latestVersion;
   pckjson.scripts[
     'build:unicode-tables'
-  ] = `esr scripts/build-unicode-tables.ts ${latestVersion}`;
+  ] = `tsx scripts/build-unicode-tables.ts ${latestVersion}`;
 
   fs.writeFile(
     filename,
