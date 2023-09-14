@@ -41,10 +41,9 @@ jobs:
       - name: Auto-Lint Code
         run: npx lint-staged
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           commit-message: 'feat(unicode): upgraded version'
-          committer: Kai Schwarz <kschwarz@hexonet.net>
           branch: upgradeUnicode
           base: master
           title: 'Upgrade Unicode to latest Version'
