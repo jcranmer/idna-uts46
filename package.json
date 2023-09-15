@@ -33,7 +33,7 @@
       "idna-map.js"
     ]
   },
-  "unicodeVersion": "15.0.0",
+  "unicodeVersion": "15.1.0",
   "scripts": {
     "prettier": "prettier -u --write \"**/*\"",
     "build": "npm run build:unicode-tables && npm run build:rollup",
@@ -46,7 +46,7 @@
     "prepare": "npm run build && npx lint-staged",
     "build:unicode-upgrade": "tsx scripts/unicode-upgrade.ts",
     "build:unicode-checkversion": "tsx scripts/unicode-checkversion.ts",
-    "build:unicode-tables": "tsx scripts/build-unicode-tables.ts 15.0.0",
+    "build:unicode-tables": "tsx scripts/build-unicode-tables.ts 15.1.0",
     "build:rollup": "rollup -c rollup-esm.config.mjs"
   },
   "dependencies": {
