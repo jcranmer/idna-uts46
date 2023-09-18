@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/hexonet/idna-uts46/compare/v5.0.7...v5.1.0) (2023-09-18)
+
+
+### Features
+
+* **unicode:** upgraded version ([cb662c3](https://github.com/hexonet/idna-uts46/commit/cb662c306bb2d14416919b91709637fee01f01e8))
+
 ## [5.0.7](https://github.com/hexonet/idna-uts46/compare/v5.0.6...v5.0.7) (2023-03-13)
 
 
