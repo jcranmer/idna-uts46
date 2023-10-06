@@ -1,17 +1,18 @@
 {
   "plugins": [
-    [
-      "@semantic-release/exec",
-      {
-        "prepareCmd": "npm run build && npx lint-staged"
-      }
-    ],
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
       "@semantic-release/changelog",
       {
         "changelogFile": "HISTORY.md"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "npm run build && npx lint-staged",
+        "successCmd": "gulp -f gulpfile.cjs publish --notes \"${encodeURIComponent(nextRelease.notes)}\""
       }
     ],
     "@semantic-release/npm",

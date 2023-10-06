@@ -22,10 +22,10 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Setup NodeJS @ LTS
+      - name: Setup NodeJS @ ${{ vars.RTLDEV_MW_CI_NODE_VERSION }}
         uses: actions/setup-node@v3
         with:
-          node-version: lts/*
+          node-version: ${{ vars.RTLDEV_MW_CI_NODE_VERSION }}
           check-latest: true
           cache: 'npm'
       - name: Install node dependencies
@@ -47,8 +47,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 16
-          - 18
+          - ${{ vars.RTLDEV_MW_CI_NODE_VERSION }}
     # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     name: 🧪 npm test @ ${{ matrix.node-version }}
