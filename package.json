@@ -49,6 +49,9 @@
     "build:unicode-tables": "tsx scripts/build-unicode-tables.ts 15.1.0",
     "build:rollup": "rollup -c rollup-esm.config.mjs"
   },
+  "overrides": {
+    "glob-parent": "^6.0.2"
+  },
   "dependencies": {
     "punycode": "^2.1.1"
   },
