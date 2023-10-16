@@ -8,7 +8,7 @@ jobs:
     name: Version Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ vars.RTLDEV_MW_CI_NODE_VERSION }}
@@ -23,7 +23,7 @@ jobs:
       - check
     if: failure()
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
           repository: ${{ github.event.pull_request.head.repo.full_name }}
