@@ -33,7 +33,7 @@ jobs:
       #      - name: Run test/validation
       #        run: gulp prettierCheck
       - name: Super Linter Code Base
-        uses: github/super-linter/slim@v4
+        uses: github/super-linter/slim@v5
         env:
           FILTER_REGEX_INCLUDE: '.*.js|*.js|/scripts/*|/src/*|/test/*'
           DEFAULT_BRANCH: master
