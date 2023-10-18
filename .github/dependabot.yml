@@ -1,10 +1,9 @@
 version: 2
 updates:
-  - package-ecosystem: npm
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: daily
-    open-pull-requests-limit: 10
+      interval: "daily"
     commit-message:
       prefix: "fix(npm dep)"
       prefix-development: "chore(npm dev dep)"
@@ -13,7 +12,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 10
     commit-message:
       prefix: "chore(ci dep)"
       include: "scope"
