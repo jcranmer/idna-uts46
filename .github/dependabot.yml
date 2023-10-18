@@ -8,6 +8,7 @@ updates:
       prefix: "fix(npm dep)"
       prefix-development: "chore(npm dev dep)"
       include: "scope"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
