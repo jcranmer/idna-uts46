@@ -6,11 +6,14 @@ updates:
       interval: daily
     open-pull-requests-limit: 10
     commit-message:
-      prefix: chore
+      prefix: "fix(npm dep)"
+      prefix-development: "chore(npm dev dep)"
+      include: "scope"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
     open-pull-requests-limit: 10
     commit-message:
-      prefix: chore
+      prefix: "chore(ci dep)"
+      include: "scope"
