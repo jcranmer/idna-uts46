@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/hexonet/idna-uts46/compare/v5.1.0...v5.1.1) (2023-10-20)
+
+
+### Bug Fixes
+
+* **punycode:** ensure to use the user-land replacement ([6c3a3c2](https://github.com/hexonet/idna-uts46/commit/6c3a3c296624574f663132462ffe6bcf0e406742))
+
 # [5.1.0](https://github.com/hexonet/idna-uts46/compare/v5.0.7...v5.1.0) (2023-09-18)
 
 
