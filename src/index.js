@@ -1,4 +1,4 @@
-import { ucs2encode, ucs2decode, decode, toASCII } from 'punycode';
+import { ucs2encode, ucs2decode, decode, toASCII } from 'punycode/';
 import { mapChar, mapStr } from './idna-map';
 
 function mapLabel(label, useStd3ASCII, transitional) {

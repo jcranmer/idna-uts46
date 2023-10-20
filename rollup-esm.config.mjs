@@ -23,7 +23,6 @@ export default {
     },
   ],
   plugins: [
-    // needed to resolve punycode from import not node's builtin
-    nodeResolve({ preferBuiltins: false }),
+    nodeResolve(),
   ],
 };
